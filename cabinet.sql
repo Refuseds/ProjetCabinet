@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 18 mai 2018 à 08:11
+-- Généré le :  ven. 18 mai 2018 à 08:18
 -- Version du serveur :  5.7.21
 -- Version de PHP :  5.6.35
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `cabinet`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `login`
+--
+
+DROP TABLE IF EXISTS `login`;
+CREATE TABLE IF NOT EXISTS `login` (
+  `identifiant` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `pklogin` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`pklogin`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `login`
+--
+
+INSERT INTO `login` (`identifiant`, `password`, `pklogin`) VALUES
+('root', 'root', 1),
+('admin', 'admin', 2);
 
 -- --------------------------------------------------------
 
