@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 18 mai 2018 à 08:00
+-- Généré le :  ven. 18 mai 2018 à 08:11
 -- Version du serveur :  5.7.21
 -- Version de PHP :  5.6.35
 
@@ -35,7 +35,15 @@ CREATE TABLE IF NOT EXISTS `medecin` (
   `prenom` varchar(50) NOT NULL,
   `pkmedecin` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`pkmedecin`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `medecin`
+--
+
+INSERT INTO `medecin` (`civilite`, `nom`, `prenom`, `pkmedecin`) VALUES
+(1, 'scalpel', 'beltran', 1),
+(0, 'CroqMort', 'francois', 2);
 
 -- --------------------------------------------------------
 
@@ -56,7 +64,16 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `fkmedecin` int(11) DEFAULT NULL,
   PRIMARY KEY (`pkpatient`),
   KEY `fkmedecin` (`fkmedecin`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `patient`
+--
+
+INSERT INTO `patient` (`civilite`, `nom`, `prenom`, `adresse`, `datenaissance`, `lieunaissance`, `numsecurite`, `pkpatient`, `fkmedecin`) VALUES
+(1, 'Romero', 'Diego', '42 rue des haricots', '2014-09-09 22:00:00', 'Mexico', 1234958438, 1, NULL),
+(0, 'Poussard', 'Sebastien', '42 rue des toncar', '2018-02-13 23:00:00', 'Corbeil', 12345678912, 2, 1),
+(1, 'Blobu', 'Frank', '84 rue des soleils', '2010-05-01 22:00:00', 'Paris', 84394839489, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -68,14 +85,22 @@ DROP TABLE IF EXISTS `rdv`;
 CREATE TABLE IF NOT EXISTS `rdv` (
   `date` timestamp NOT NULL,
   `heure` time NOT NULL,
-  `duree` time NOT NULL,
+  `duree` time NOT NULL DEFAULT '00:30:00',
   `pkrdv` int(11) NOT NULL AUTO_INCREMENT,
   `fkpatient` int(11) NOT NULL,
   `fkmedecin` int(11) NOT NULL,
   PRIMARY KEY (`pkrdv`),
   KEY `fkmedecin` (`fkmedecin`),
   KEY `fkpatient` (`fkpatient`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `rdv`
+--
+
+INSERT INTO `rdv` (`date`, `heure`, `duree`, `pkrdv`, `fkpatient`, `fkmedecin`) VALUES
+('2018-07-11 22:00:00', '08:37:00', '03:00:00', 1, 1, 1),
+('2018-05-29 22:00:00', '00:37:00', '00:19:00', 2, 2, 2);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
