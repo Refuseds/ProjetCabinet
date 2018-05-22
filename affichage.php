@@ -13,11 +13,11 @@
 
            <?php
                 $server = 'localhost';
-                $login = 'Diego';
-                $mdp = '0';
+                $login = 'root';
+                $mdp = 'root';
                 ///Connexion au serveur MySQL
                 try {
-                    $linkpdo = new PDO("mysql:host=$server;dbname=EXO10", $login, $mdp); }
+                    $linkpdo = new PDO("mysql:host=$server;dbname=cabinet", $login, $mdp); }
                 catch (Exception $e) {
                     die('Erreur : ' . $e->getMessage());
                 };
@@ -28,7 +28,7 @@
             ?>
 
        <table>
-        <caption>Résultat recherche</caption>
+        <caption>Liste des patients</caption>
         <thead> 
             <tr>
                 <th>----Civilite----</th>
@@ -59,5 +59,8 @@
             ?>
         </tbody>
     </table>
+
+    <a href=ajoutPatient.php> Ajout </a>
+
     </body>
 </html>
