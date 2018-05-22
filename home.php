@@ -22,12 +22,11 @@ if ( empty($_POST['id']) || empty($_POST['pw']) ) {
 	if ($data == false ) {
 		setcookie('id', 'login_erreur', time() + (86400 * 30));
 		setcookie('pw', 'login_erreur', time() + (86400 * 30));
-		//header('Location: index.php');
-		echo "test";
-		var_dump($_COOKIE['id']);
-	}
+		header('Location: index.php');
+	} else {
 	setcookie('id', $_POST['id'], time() + (86400 * 30));
 	setcookie('pw', $_POST['pw'], time() + (86400 * 30));
+	}
 }
 ?>
 

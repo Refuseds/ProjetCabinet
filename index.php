@@ -15,10 +15,9 @@
 			echo "<a> Identification invalide ( apparait si aucun champs n'a été renseigné )  </a> ";
 		}
 		if ( $_COOKIE['id'] == 'login_erreur' ||  $_COOKIE['pw'] == 'login_erreur' ) {
-			echo "<a> Le nom d'utilisateur ou le mot de passe est invalide ( apparait qd login incorrect </a>";
+			echo "<a> Le nom d'utilisateur ou le mot de passe est invalide ( apparait qd login incorrect ) </a>";
 		}
 	}
-	var_dump($_COOKIE['id']);
 ?>
 
 
