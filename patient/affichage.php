@@ -53,7 +53,14 @@
                     echo '<td>'.$donnees['date naissance'].'</td>';
                     echo '<td>'.$donnees['lieu naissance'].'</td>';
                     echo '<td>'.$donnees['numero secu'].'</td>';
-                    echo '<td>';
+                    echo '<td>'.
+                    '<a href="modification.php?id='.$donnees['pkpatient']
+                    .' "> Modification</a>'
+                    .'</td>';
+                    echo '<td>'.
+                    '<a href="suppression.php?id='.$donnees['pkpatient']
+                                    .' "> Suppression</a>'
+                    .'</td>';
                 echo '</tr>';
             }
             ?>
