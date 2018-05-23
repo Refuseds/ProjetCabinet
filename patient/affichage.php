@@ -9,7 +9,7 @@
     </head>
     
     <body>
-        <a href="index.html">back</a>
+        <a href="../index.html">back</a>
 
            <?php
                 $server = 'localhost';
@@ -67,7 +67,7 @@
         </tbody>
     </table>
 
-    <a href=ajoutPatient.php> Ajout </a>
+    <a href=ajout.php> Ajout </a>
 
     </body>
 </html>
