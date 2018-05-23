@@ -9,15 +9,15 @@
     </head>
     
     <body>
-        <a href="index.html">back</a>
+        <a href="../index.html">back</a>
 
            <?php
                 $server = 'localhost';
-                $login = 'Diego';
-                $mdp = '0';
+                $login = 'root';
+                $mdp = 'root';
                 ///Connexion au serveur MySQL
                 try {
-                    $linkpdo = new PDO("mysql:host=$server;dbname=EXO10", $login, $mdp); }
+                    $linkpdo = new PDO("mysql:host=$server;dbname=cabinet", $login, $mdp); }
                 catch (Exception $e) {
                     die('Erreur : ' . $e->getMessage());
                 };
@@ -28,7 +28,7 @@
             ?>
 
        <table>
-        <caption>Résultat recherche</caption>
+        <caption>Liste des patients</caption>
         <thead> 
             <tr>
                 <th>----Civilite----</th>
@@ -53,11 +53,21 @@
                     echo '<td>'.$donnees['date naissance'].'</td>';
                     echo '<td>'.$donnees['lieu naissance'].'</td>';
                     echo '<td>'.$donnees['numero secu'].'</td>';
-                    echo '<td>';
+                    echo '<td>'.
+                    '<a href="modification.php?id='.$donnees['pkpatient']
+                    .' "> Modification</a>'
+                    .'</td>';
+                    echo '<td>'.
+                    '<a href="suppression.php?id='.$donnees['pkpatient']
+                                    .' "> Suppression</a>'
+                    .'</td>';
                 echo '</tr>';
             }
             ?>
         </tbody>
     </table>
+
+    <a href=ajout.php> Ajout </a>
+
     </body>
 </html>
