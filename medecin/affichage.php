@@ -24,7 +24,7 @@
                 $req = $linkpdo->prepare('  SELECT  *
                                             FROM medecin
                                             ');
-                $req->execute(array('lsearch' => $_POST['search']));
+                $req->execute();  
             ?>
 
        <table>

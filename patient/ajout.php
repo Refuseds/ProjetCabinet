@@ -1,4 +1,4 @@
-<form action="ajoutPatient.php" method="post">
+<form action="ajout.php" method="post">
  
     <table>
         <caption>Ajout d'un patient</caption>

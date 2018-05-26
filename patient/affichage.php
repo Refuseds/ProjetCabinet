@@ -24,7 +24,7 @@
                 $req = $linkpdo->prepare('  SELECT  *
                                             FROM patient 
                                             ');
-                $req->execute(array('lsearch' => $_POST['search']));  
+                $req->execute();  
             ?>
 
        <table>
@@ -50,9 +50,9 @@
                     echo '<td>'.$donnees['nom'].'</td>';
                     echo '<td>'.$donnees['prenom'].'</td>';
                     echo '<td>'.$donnees['adresse'].'</td>';
-                    echo '<td>'.$donnees['date naissance'].'</td>';
-                    echo '<td>'.$donnees['lieu naissance'].'</td>';
-                    echo '<td>'.$donnees['numero secu'].'</td>';
+                    echo '<td>'.$donnees['datenaissance'].'</td>';
+                    echo '<td>'.$donnees['lieunaissance'].'</td>';
+                    echo '<td>'.$donnees['numsecurite'].'</td>';
                     echo '<td>'.
                     '<a href="modification.php?id='.$donnees['pkpatient']
                     .' "> Modification</a>'
