@@ -1,13 +1,13 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
-		
+
 
 
 
 		<title> Affichage des medecins</title>
     </head>
-    
+
     <body>
         <a href="../index.html">back</a>
 
@@ -22,14 +22,14 @@
                     die('Erreur : ' . $e->getMessage());
                 };
                 $req = $linkpdo->prepare('  SELECT  *
-                                            FROM medecin 
+                                            FROM medecin
                                             ');
-                $req->execute(array('lsearch' => $_POST['search']));  
+                $req->execute(array('lsearch' => $_POST['search']));
             ?>
 
        <table>
         <caption>Liste des medecins</caption>
-        <thead> 
+        <thead>
             <tr>
                 <th>----Civilite----</th>
                 <th>----Nom----</th>
@@ -38,7 +38,7 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody> 
+        <tbody>
             <?php
             while($donnees = $req->fetch()){
                 echo '<tr>';
