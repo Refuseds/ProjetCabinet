@@ -51,7 +51,12 @@ $options = [
 // $hash = password_hash("admin", PASSWORD_BCRYPT, $options);
 ?>
 <HTML>
-	<form method="POST" action="home.php">
-		<input type="submit" name="deconnexion" value="se deconnecter">
-	</p>
-</form>
+	<body>
+		<header>
+			<?php include('menu.php')?>
+		</header>
+		<form method="POST" action="home.php">
+			<input type="submit" name="deconnexion" value="se deconnecter">
+		</form>
+	</body>
+</HTML>
