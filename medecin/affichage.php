@@ -9,7 +9,9 @@
     </head>
 
     <body>
-        <a href="../index.html">back</a>
+        <header>
+            <?php include('../menu.php')?>
+        </header>
 
            <?php
                 $server = 'localhost';
