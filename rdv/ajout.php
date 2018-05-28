@@ -1,3 +1,4 @@
+<?php include '../secure.php';?>
 <?php
     $server = 'localhost';
     $login = 'root';
@@ -8,30 +9,30 @@
         die('Erreur : ' . $e->getMessage());
     };
     $reqpatient = $linkpdo->prepare('SELECT * FROM patient ');
-    $reqpatient->execute(); 
+    $reqpatient->execute();
     $reqmedecin = $linkpdo->prepare('SELECT * FROM medecin ');
-    $reqmedecin->execute();     
+    $reqmedecin->execute();
 ?>
 <form action="ajout.php" method="post">
 
     <table>
         <caption>Ajout d'un RDV</caption>
-        <tbody> 
+        <tbody>
             <td> Date : </td>
             <td> <input type="text" name="date"></td>
         </tbody>
-        <tbody> 
+        <tbody>
             <td>    Heure : </td>
             <td> <input type="text" name="heure" ></td>
         </tbody>
 
-        <tbody> 
+        <tbody>
             <td>    Durée : </td>
             <td> <input type="text" name="duree"></td>
         </tbody>
-        <tbody> 
+        <tbody>
             <td>     Patient : </td>
-            <td> 
+            <td>
                 <input list="patient" type="text" name="patient" >
                 <datalist id="patient">
                     <?php
@@ -41,9 +42,9 @@
                 </datalist>
             </td>
         </tbody>
-        <tbody> 
+        <tbody>
             <td>    Medecin : </td>
-            <td> 
+            <td>
                 <input list="medecin" type="text" name="medecin" >
                 <datalist id="medecin">
                     <?php
@@ -57,7 +58,7 @@
     <input type="submit" value="Valider" name="valid">
 </form>
 
-<?php 
+<?php
     if( isset($_POST['valid'])){
         echo strtok($_POST['patient']," ");
 
@@ -67,12 +68,12 @@
         $mdp = 'root';
         try {
             $linkpdo = new PDO("mysql:host=$server;dbname=cabinet", $login, $mdp);
-        } 
+        }
         catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         };
         $req = $linkpdo->prepare('INSERT INTO rdv (
-                                        date, 
+                                        date,
                                         heure,
                                         duree,
                                         fkpatient,
@@ -93,10 +94,7 @@
                             'lfkpatient' => strtok($_POST['patient']," "),
                             'lfkpatient' => strtok($_POST['medecin']," ")
         ));
-        
+
     }
 
-?>    
-
-
-    
+?>

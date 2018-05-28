@@ -1,10 +1,11 @@
+<?php include '../secure.php';?>
 <form action="ajout.php" method="post">
- 
+
     <table>
         <caption>Ajout d'un patient</caption>
-        <tbody> 
+        <tbody>
             <td> Civilite : </td>
-            <td> 
+            <td>
             <input list="sexe" type="text" name="civilite" >
             <datalist id="sexe">
                 <select name"civilite" >
@@ -12,27 +13,27 @@
                     <option value="Mme." >
             </datalist>
         </tbody>
-        <tbody> 
+        <tbody>
             <td>    Nom : </td>
             <td> <input type="text" name="nom" ></td>
         </tbody>
-        <tbody> 
+        <tbody>
             <td>    Prenom : </td>
             <td> <input type="text" name="prenom"></td>
         </tbody>
-        <tbody> 
+        <tbody>
             <td>     Adresse : </td>
             <td> <input type="text" name="adresse" ></td>
         </tbody>
-        <tbody> 
+        <tbody>
             <td>    Date naissance: </td>
             <td> <input type="date" name="datenaissance" ></td>
         </tbody>
-        <tbody> 
+        <tbody>
             <td>     Lieu naissance : </td>
             <td> <input type="text" name="lieunaissance" ></td>
         </tbody>
-        <tbody> 
+        <tbody>
             <td>     Numero Securite Sociale : </td>
             <td><input type="text" name="numsecurite" ></td>
         </tbody>
@@ -40,14 +41,14 @@
     <input type="submit" value="Valider" name="valid">
 </form>
 
-<?php 
+<?php
     if( isset($_POST['valid'])){
         $server = 'localhost';
         $login = 'root';
         $mdp = 'root';
         try {
             $linkpdo = new PDO("mysql:host=$server;dbname=cabinet", $login, $mdp);
-        } 
+        }
         catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         };
@@ -61,7 +62,7 @@
         }
 
         $req = $linkpdo->prepare('INSERT INTO patient (
-                                        civilite, 
+                                        civilite,
                                         nom,
                                         prenom,
                                         adresse,
@@ -94,7 +95,4 @@
        // echo "Contact non modifié";
     }
 
-?>    
-
-
-    
+?>

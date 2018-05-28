@@ -23,13 +23,13 @@
                 catch (Exception $e) {
                     die('Erreur : ' . $e->getMessage());
                 };
-                $req = $linkpdo->prepare(" SELECT  pkpatient,civilite,nom,prenom,adresse, 
+                $req = $linkpdo->prepare(" SELECT  pkpatient,civilite,nom,prenom,adresse,
                                             DATE_FORMAT(datenaissance, '%d/%m/%Y') AS datenaissance,
                                             lieunaissance,
                                             numsecurite
-                                            FROM patient 
+                                            FROM patient
                                             ");
-                $req->execute();  
+                $req->execute();
             ?>
 						<br>
 						<div class="container">
@@ -74,7 +74,5 @@
 							</table>
 						<a class="btn btn-success float-right" href=ajout.php> Ajouter un patient </a>
 						</div>
-
-
     </body>
 </html>

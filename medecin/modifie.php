@@ -1,3 +1,4 @@
+<?php include '../secure.php';?>
 <html>
     <body>
         Medecin modifié<br>
@@ -7,7 +8,7 @@
 
 
 
-    <?php    
+    <?php
         $server = 'localhost';
         $login = 'root';
         $mdp = 'root';
@@ -16,10 +17,10 @@
         catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         };
-        
+
        if(isset($_POST['valid'])){
             $req = $linkpdo->prepare('UPDATE medecin
-                                        SET     civilite = :lcivilite, 
+                                        SET     civilite = :lcivilite,
                                                 nom = :lnom,
                                                 prenom = :lprenom
                                         WHERE pkmedecin LIKE :lid
@@ -31,7 +32,7 @@
                 'lid' => $_POST['id']
             ));
         }
-    
+
     ?>
     </body>
 </html>

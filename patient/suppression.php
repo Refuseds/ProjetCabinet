@@ -1,4 +1,4 @@
-
+<?php include '../secure.php';?>
 
 <html>
     <body>
@@ -11,9 +11,9 @@
     <form action='affichage.php' method="post">
         <input type="submit"  value="Retour">
     </form>
-    
 
 
 
-    </body> 
+
+    </body>
 </html>

@@ -1,3 +1,4 @@
+<?php include '../secure.php';?>
 <html>
     <body>
         Patient supprimé<br>
@@ -7,7 +8,7 @@
 
 
 
-    <?php    
+    <?php
         $server = 'localhost';
         $login = 'root';
         $mdp = 'root';

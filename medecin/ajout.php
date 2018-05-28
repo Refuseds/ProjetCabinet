@@ -1,11 +1,12 @@
+<?php include '../secure.php';?>
 <form action="ajout.php" method="post">
 
 
     <table>
         <caption>Ajout d'un medecin</caption>
-        <tbody> 
+        <tbody>
             <td> Civilite : </td>
-            <td> 
+            <td>
                 <input list="sexe" type="text" name="civilite" >
                 <datalist id="sexe">
                     <select name"civilite" >
@@ -14,11 +15,11 @@
                 </datalist>
             </td>
         </tbody>
-        <tbody> 
+        <tbody>
             <td>    Nom : </td>
             <td> <input type="text" name="nom" ></td>
         </tbody>
-        <tbody> 
+        <tbody>
             <td>    Prenom : </td>
             <td> <input type="text" name="prenom"></td>
         </tbody>
@@ -26,18 +27,18 @@
     <input type="submit" value="Valider" name="valid">
 </form>
 
-<?php 
+<?php
     if( isset($_POST['valid'])){
         $server = 'localhost';
         $login = 'root';
         $mdp = 'root';
         try {
             $linkpdo = new PDO("mysql:host=$server;dbname=cabinet", $login, $mdp);
-        } 
+        }
         catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         };
-        
+
         if($_POST['civilite'] == "Mme."){
             $civ = 0;
         }else if($_POST['civilite'] == "Mr."){
@@ -47,7 +48,7 @@
         }
 
         $req = $linkpdo->prepare('INSERT INTO medecin (
-                                        civilite, 
+                                        civilite,
                                         nom,
                                         prenom
                                       )
@@ -65,7 +66,4 @@
         //print_r($req->errorInfo());
     }
 
-?>    
-
-
-    
+?>

@@ -1,3 +1,4 @@
+<?php include '../secure.php';?>
 <?php
 
     $server = 'localhost';
@@ -9,11 +10,11 @@
     catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     };
-    $ida = $_GET['id']; 
-    
+    $ida = $_GET['id'];
+
 
     $req = $linkpdo->prepare('  SELECT *
-    FROM medecin 
+    FROM medecin
     WHERE pkmedecin like :lid');
     $req->execute(array('lid' => $ida)) ;
     $donnees = $req ->fetch();
@@ -29,15 +30,15 @@
     <form action="modifie.php" method="post">
         <table>
             <caption>Modification d'un patient</caption>
-            <tbody> 
+            <tbody>
                 <td> Civilite : </td>
                 <td> <input type="text" name="civilite" value="<?php echo $donnees['civilite']; ?>"></td>
             </tbody>
-            <tbody> 
+            <tbody>
                 <td>    Nom : </td>
                 <td> <input type="text" name="nom" value="<?php echo $donnees['nom']; ?>"></td>
             </tbody>
-            <tbody> 
+            <tbody>
                 <td>    Prenom : </td>
                 <td> <input type="text" name="prenom" value="<?php echo $donnees['prenom']; ?>"></td>
             </tbody>
@@ -47,7 +48,6 @@
         <input type="submit" value="Valider" name="valid">
     </form>
 
-   
+
   </body>
 </html>
-
