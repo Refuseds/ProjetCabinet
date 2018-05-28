@@ -19,13 +19,5 @@
     </div>
   </div>
 </nav>
-<nav>
-    <ul id="banniere-menu">
-        <li><a href="/patient/affichage.php">Usagers</a></li>
-        <li><a href="/medecin/affichage.php">Médecins</a></li>
-        <li><a href="/rdv/affichage.php">Consultations</a></li>
-        <li><a href="/stat/statistiques.php">Statistiques</a></li>
-    </ul>
-</nav>
 <?php
  ?>
