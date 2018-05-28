@@ -4,7 +4,13 @@
         <caption>Ajout d'un patient</caption>
         <tbody> 
             <td> Civilite : </td>
-            <td> <input type="text" name="civilite"></td>
+            <td> 
+            <input list="sexe" type="text" name="civilite" >
+            <datalist id="sexe">
+                <select name"civilite" >
+                    <option value="Mr.">
+                    <option value="Mme." >
+            </datalist>
         </tbody>
         <tbody> 
             <td>    Nom : </td>
@@ -20,7 +26,7 @@
         </tbody>
         <tbody> 
             <td>    Date naissance: </td>
-            <td> <input type="text" name="datenaissance" ></td>
+            <td> <input type="date" name="datenaissance" ></td>
         </tbody>
         <tbody> 
             <td>     Lieu naissance : </td>
@@ -45,6 +51,15 @@
         catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         };
+
+        if($_POST['civilite'] == "Mme."){
+            $civ = 0;
+        }else if($_POST['civilite'] == "Mr."){
+            $civ = 1;
+        }else if($_POST['civilite'] == ""){
+            echo " Champ civilité non renseigné";
+        }
+
         $req = $linkpdo->prepare('INSERT INTO patient (
                                         civilite, 
                                         nom,
@@ -65,7 +80,7 @@
                                   )
                             ');
         $req->execute(array(
-                            'lcivilite' => $_POST['civilite'],
+                            'lcivilite' => $civ,
                             'lnom' => $_POST['nom'],
                             'lprenom' => $_POST['prenom'],
                             'ladresse' => $_POST['adresse'],

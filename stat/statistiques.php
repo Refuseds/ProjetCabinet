@@ -11,7 +11,7 @@
      catch (Exception $e) {
          die('Erreur : ' . $e->getMessage());
      };
-     $reqrdv = $linkpdo->prepare('  SELECT   FROM patient WHERE ');
+     $reqrdv = $linkpdo->prepare('  SELECT   FROM patient WHERE civilite LIKE 1 AND ');
      $reqrdv->execute();  
     ?>
         <header>

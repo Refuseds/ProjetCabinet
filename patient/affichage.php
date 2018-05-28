@@ -23,10 +23,13 @@
                 catch (Exception $e) {
                     die('Erreur : ' . $e->getMessage());
                 };
-                $req = $linkpdo->prepare('  SELECT  *
-                                            FROM patient
-                                            ');
-                $req->execute();
+                $req = $linkpdo->prepare(" SELECT  pkpatient,civilite,nom,prenom,adresse, 
+                                            DATE_FORMAT(datenaissance, '%d/%m/%Y') AS datenaissance,
+                                            lieunaissance,
+                                            numsecurite
+                                            FROM patient 
+                                            ");
+                $req->execute();  
             ?>
 						<br>
 						<div class="container">

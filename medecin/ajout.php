@@ -1,15 +1,5 @@
 <form action="ajout.php" method="post">
 
-<input id="www" type="url" list="urldata" name="adresseweb">
-
-<datalist id="urldata">
-  <select>
-    <option value="sans label ni contenu"></option>
-    <option value="sans label avec contenu texte">le texte</option>
-    <option value="avec label" label="le label"></option>
-    <option value="avec label et texte" label="le label">le texte</option>
-  </select>
-</datalist>
 
     <table>
         <caption>Ajout d'un medecin</caption>
@@ -18,13 +8,10 @@
             <td> 
                 <input list="sexe" type="text" name="civilite" >
                 <datalist id="sexe">
-                    <select name="civilite" >
+                    <select name"civilite" >
                         <option value="Mr.">
-                        <option value="0" >Mme.</option>
-                    </select>
+                        <option value="Mme." >
                 </datalist>
-
-                
             </td>
         </tbody>
         <tbody> 
@@ -50,6 +37,15 @@
         catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         };
+        
+        if($_POST['civilite'] == "Mme."){
+            $civ = 0;
+        }else if($_POST['civilite'] == "Mr."){
+            $civ = 1;
+        }else if($_POST['civilite'] == ""){
+            echo " Champ civilité non renseigné";
+        }
+
         $req = $linkpdo->prepare('INSERT INTO medecin (
                                         civilite, 
                                         nom,
@@ -62,7 +58,7 @@
                                   )
                             ');
         $req->execute(array(
-                            'lcivilite' => $_POST['civilite'],
+                            'lcivilite' => $civ,
                             'lnom' => $_POST['nom'],
                             'lprenom' => $_POST['prenom']
         ));
