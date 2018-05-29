@@ -57,7 +57,9 @@
 		catch (Exception $e) {
 			die('Erreur : ' . $e->getMessage());
 		};
-		$reqrdv = $linkpdo->prepare('  SELECT  * FROM rdv ');
+		$reqrdv = $linkpdo->prepare("  SELECT  DATE_FORMAT(date, '%d/%m/%Y') AS date,
+											heure, duree, pkrdv, fkpatient, fkmedecin
+										 FROM rdv ORDER BY date DESC ");
 		$reqrdv->execute();
 		?>
 		<br>
