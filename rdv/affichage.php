@@ -143,6 +143,8 @@
 									<label class="col-sm-4 col-form-label">Patient</label>
 									<div class="col-sm-8">
 										<select class="custom-select mr-sm-2" name="patient" >
+										<option> Veuillez choisir un patient </option>
+
 											<?php
 											    $server = 'localhost';
 											    $login = 'root';
@@ -154,9 +156,9 @@
 											    };
 											    $reqpatient = $linkpdo->prepare('SELECT * FROM patient ');
 											    $reqpatient->execute();
-	                    while($p=$reqpatient->fetch()){
-	                        echo '<option value="'.$p['pkpatient'].'"> '.$p['nom'].' '.$p['prenom'].'</option>';
-	                    }?>
+												while($p=$reqpatient->fetch()){
+													echo '<option value="'.$p['pkpatient'].'"> '.$p['nom'].' '.$p['prenom'].'</option>';
+												}?>
 										</select>
 									</div>
 								</div>
@@ -164,6 +166,8 @@
 									<label class="col-sm-4 col-form-label">Docteur</label>
 									<div class="col-sm-8">
 										<select class="custom-select mr-sm-2" name="medecin" >
+										<option> Veuillez choisir un médecin </option>
+
 											<?php
 											    $server = 'localhost';
 											    $login = 'root';
@@ -175,9 +179,9 @@
 											    };
 											    $reqmedecin = $linkpdo->prepare('SELECT * FROM medecin ');
 											    $reqmedecin->execute();
-	                    while($m=$reqmedecin->fetch()){
-	                        echo '<option value="'.$m['pkmedecin'].'"> '.$m['nom'].' '.$m['prenom'].'</option>';
-	                    }?>
+												while($m=$reqmedecin->fetch()){
+													echo '<option value="'.$m['pkmedecin'].'"> '.$m['nom'].' '.$m['prenom'].'</option>';
+												}?>
 										</select>
 									</div>
 								</div>
