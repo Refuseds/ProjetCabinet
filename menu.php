@@ -17,7 +17,7 @@
         <a class="nav-item nav-link <?php if ( (substr($_SERVER['REQUEST_URI'], 1, 7)) == "medecin" ) { echo "active";}?> " href="/medecin/affichage.php">Medecins <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link <?php if ( (substr($_SERVER['REQUEST_URI'], 1, 7)) == "patient" ) { echo "active";}?>" href="/patient/affichage.php">Patients</a>
         <a class="nav-item nav-link <?php if ( (substr($_SERVER['REQUEST_URI'], 1, 3)) == "rdv" ) { echo "active";}?>" href="/rdv/affichage.php">RDV</a>
-        <a class="nav-item nav-link <?php if ( (substr($_SERVER['REQUEST_URI'], 1, 11)) == "patient" ) { echo "statistique";}?>" href="#">Statistiques</a>
+        <a class="nav-item nav-link <?php if ( (substr($_SERVER['REQUEST_URI'], 1, 11)) == "statistiques" ) { echo "active";}?>" href="/stat/statistiques.php">Statistiques</a>
       </div>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
