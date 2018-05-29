@@ -41,13 +41,8 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8" />
-
-
-
-
 	<title> Affichage des medecins</title>
 </head>
-
 <body>
 	<header>
 		<?php include('../menu.php')?>
