@@ -67,7 +67,7 @@
     ?>
     
         <header>
-            <?php include('../menu.php')?>
+            <?php include('menu.php')?>
         </header>
         <div class="container">
             <br>
@@ -78,7 +78,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Tanche d'âge</th>
+                        <th>Tranche d'âge</th>
                         <th>Nb Hommes</th>
                         <th>Nb Femmes</th>
                     </tr>

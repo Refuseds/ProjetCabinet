@@ -41,7 +41,7 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8" />
-	<title> Affichage des rdv</title>
+	<title> Affichage des consultations</title>
 </head>
 <body>
 	<header>
@@ -64,7 +64,7 @@
 		?>
 		<br>
 		<div class="container">
-			<h2>Liste des RDV</h2>
+			<h2>Liste des consultations</h2>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -107,7 +107,7 @@
 				</tbody>
 			</table>
 			<button type="button" class="btn btn-success float-right ajouter" data-toggle="modal" data-target="#ajout">
-				Ajouter un RDV
+				Ajouter une consultation
 			</button>
 		</div>
 
@@ -116,7 +116,7 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Ajouter un RDV</h5>
+							<h5 class="modal-title" id="exampleModalLabel">Ajouter une consultation</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>

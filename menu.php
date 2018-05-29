@@ -16,13 +16,13 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link <?php if ( (substr($_SERVER['REQUEST_URI'], 1, 7)) == "medecin" ) { echo "active";}?> " href="/medecin/affichage.php">Medecins <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link <?php if ( (substr($_SERVER['REQUEST_URI'], 1, 7)) == "patient" ) { echo "active";}?>" href="/patient/affichage.php">Patients</a>
-        <a class="nav-item nav-link <?php if ( (substr($_SERVER['REQUEST_URI'], 1, 3)) == "rdv" ) { echo "active";}?>" href="/rdv/affichage.php">RDV</a>
-        <a class="nav-item nav-link <?php if ( (substr($_SERVER['REQUEST_URI'], 1, 11)) == "statistiques" ) { echo "active";}?>" href="/stat/statistiques.php">Statistiques</a>
+        <a class="nav-item nav-link <?php if ( (substr($_SERVER['REQUEST_URI'], 1, 3)) == "consultations" ) { echo "active";}?>" href="/consultations/affichage.php">Consultations</a>
+        <a class="nav-item nav-link <?php if ( (substr($_SERVER['REQUEST_URI'], 1, 11)) == "statistiques" ) { echo "active";}?>" href="/statistiques.php">Statistiques</a>
       </div>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <form method="POST" action="../home.php">
-            <button type="submit" name="deconnexion" class="btn btn-light">se déconnecter</button>
+            <button type="submit" name="deconnexion" class="btn btn-dark">Se déconnecter</button>
           </form>
         </li>
       </ul>

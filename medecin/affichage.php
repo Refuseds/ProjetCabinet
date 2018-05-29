@@ -97,7 +97,7 @@
 					</tbody>
 				</table>
 				<button type="button" class="btn btn-success float-right ajouter" data-toggle="modal" data-target="#ajout">
-					Ajouter un medecin
+					Ajouter un médecin
 				</button>
 			</div>
 
