@@ -122,9 +122,12 @@
                             $reqHrdv->execute(); 
                             while($d=$reqHrdv->fetch()){
                                 if($d['heure'] != ''){
+
+                                    $tmin = $d['heure']*60 + $d['min'];
+                                    $heure = (int)($tmin/60);
                                     echo '<tr>'.
                                             '<td>'.$m['nom'].' '.$m['prenom'].'</td>'.
-                                            '<td>'.$d['heure'].'h'.$d['min'].'</td>'.
+                                            '<td>'.$heure.'h'.($tmin - $heure*60).'</td>'.
                                         '</tr>';
                                 }
                             }   
