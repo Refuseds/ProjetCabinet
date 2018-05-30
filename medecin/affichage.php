@@ -1,5 +1,6 @@
 <?php include '../secure.php';?>
 <?php
+// ajout de données
 if( isset($_POST['valid'])){
     $server = 'localhost';
     $login = 'root';
@@ -36,6 +37,7 @@ if( isset($_POST['valid'])){
                         'lprenom' => $_POST['prenom']
     ));
 }
+// suppression de données
 if( isset($_POST['suppression'])) {
   $server = 'localhost';
   $login = 'root';
@@ -49,6 +51,34 @@ if( isset($_POST['suppression'])) {
 
   $req = $linkpdo->prepare('DELETE FROM  medecin WHERE pkmedecin = :pk');
   $req->execute(array('pk' => $_POST['pkmedecin'],));
+}
+// modification de données
+if( isset($_POST['modification'])){
+    $server = 'localhost';
+    $login = 'root';
+    $mdp = 'root';
+    try {
+        $linkpdo = new PDO("mysql:host=$server;dbname=cabinet", $login, $mdp);
+    }
+    catch (Exception $e) {
+        die('Erreur : ' . $e->getMessage());
+    };
+
+    if($_POST['civilite'] == "Mme."){
+        $civ = 0;
+    }else if($_POST['civilite'] == "Mr."){
+        $civ = 1;
+    }else if($_POST['civilite'] == ""){
+        echo " Champ civilité non renseigné";
+    }
+
+    $req = $linkpdo->prepare('UPDATE medecin SET civilite = :lcivilite, nom = :lnom, prenom = :lprenom WHERE pkmedecin = :lpk');
+    $req->execute(array(
+                        'lcivilite' => $_POST['civilite'],
+                        'lnom' => $_POST['nom'],
+                        'lprenom' => $_POST['prenom'],
+                        'lpk' => $_POST['pkmedecin']
+    ));
 }
 ?>
 <html lang="fr">
@@ -139,7 +169,8 @@ if( isset($_POST['suppression'])) {
 													</div>
 												</div>
 												<br>
-												<input class="btn btn-success float-right" type="submit" value="Valider" name="valid">
+                        <input type="hidden" value="<?php echo $donnees['pkmedecin'];?>" name="pkmedecin" />
+												<input class="btn btn-success float-right" type="submit" value="Enregistrer les modifications" name="modification">
 											</div>
 										</form>
 									</div>

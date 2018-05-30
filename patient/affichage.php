@@ -41,7 +41,7 @@ if( isset($_POST['valid'])){
 		'lnumsecurite' => $_POST['numsecurite']
 	));
 }
-
+// suppression de données
 if ( isset($_POST['suppression'])) {
 	$server = 'localhost';
 	$login = 'root';
@@ -55,6 +55,30 @@ if ( isset($_POST['suppression'])) {
 
 	$req = $linkpdo->prepare('DELETE FROM patient WHERE pkpatient = :pk');
 	$req->execute(array('pk' => $_POST['pkpatient'] ));
+}
+// modification de donnée
+if( isset($_POST['modification'])){
+	$server = 'localhost';
+	$login = 'root';
+	$mdp = 'root';
+	try {
+		$linkpdo = new PDO("mysql:host=$server;dbname=cabinet", $login, $mdp);
+	}
+	catch (Exception $e) {
+		die('Erreur : ' . $e->getMessage());
+	};
+	$req = $linkpdo->prepare('UPDATE patient SET civilite = :lcivilite, nom = :lnom, prenom = :lprenom, adresse = :ladresse,
+		datenaissance = :ldatenaissance,	lieunaissance = :llieunaissance,	numsecurite = :lnumsecurite WHERE pkpatient = :lpk');
+	$req->execute(array(
+		'lcivilite' => $_POST['civilite'],
+		'lnom' => $_POST['nom'],
+		'lprenom' => $_POST['prenom'],
+		'ladresse' => $_POST['adresse'],
+		'ldatenaissance' => $_POST['datenaissance'],
+		'llieunaissance' => $_POST['lieunaissance'],
+		'lnumsecurite' => $_POST['numsecurite'],
+		'lpk' => $_POST['pkpatient']
+	));
 }
 ?>
 <html lang="fr">
@@ -162,7 +186,7 @@ if ( isset($_POST['suppression'])) {
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label">Date de naissance</label>
 													<div class="col-sm-8">
-														<input type="date" value="<?php echo $donnees['datenaissance'];?>" class="form-control" name="datenaissance">
+														<input type="date" value="<?php echo substr($donnees['datenaissance'], 6, 4).'-'.substr($donnees['datenaissance'], 3, 2).'-'.substr($donnees['datenaissance'], 0, 2); ?>" class="form-control" name="datenaissance">
 													</div>
 												</div>
 												<div class="form-group row">
@@ -178,7 +202,8 @@ if ( isset($_POST['suppression'])) {
 													</div>
 												</div>
 												<br>
-												<input class="btn btn-success float-right" type="submit" value="Valider" name="valid">
+												<input type="hidden" value="<?php echo $donnees['pkpatient'];?>" name="pkpatient">
+												<input class="btn btn-success float-right" type="submit" value="Enregitrer les modifications" name="modification">
 											</div>
 										</form>
 									</div>
@@ -205,7 +230,7 @@ if ( isset($_POST['suppression'])) {
                     <a> Êtes-vous sûr de vouloir supprimer le patient  <b>'<?php echo $donnees['prenom'].' '.$donnees['nom'];?></b>  ?
       								<form action="affichage.php" method="post">
       									<br>
-                        <input type="hidden" value="<?php echo $donnees['pkpatient'];?>" name="pkpatient" />
+                        <input type="hidden" value="<?php echo $donnees['pkpatient'];?>" name="pkpatient">
       									<input class="btn btn-outline-danger float-right" type="submit" value="Supprimer" name="suppression">
       							</form>
       						</div>
