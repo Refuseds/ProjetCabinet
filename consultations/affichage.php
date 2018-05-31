@@ -114,7 +114,7 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Date</label>
                       <div class="col-sm-8">
-                        <input type="date" value="<?php echo substr($rdv['date'], 6, 4).'-'.substr($rdv['date'], 3, 2).'-'.substr($rdv['date'], 0, 2); ?>" class="form-control" name="datenaissance">
+                        <input type="date" value="<?php echo substr($rdv['date'], 6, 4).'-'.substr($rdv['date'], 3, 2).'-'.substr($rdv['date'], 0, 2); ?>" class="form-control" name="date">
                       </div>
                     </div>
                     <div class="form-group row">
@@ -129,14 +129,22 @@
     										<input type="time" value="<?php echo $rdv['duree']; ?>" class="form-control" name="duree">
     									</div>
     								</div>
-
-
-
                     <div class="form-group row">
     									<label class="col-sm-4 col-form-label">Patient</label>
     									<div class="col-sm-8">
     										<select class="custom-select mr-sm-2" name="fkpatient" >
-
+                          <?php
+                            $req_patient_selection = $linkpdo->prepare('SELECT * FROM patient');
+                            $req_patient_selection->execute();
+                            while($patient_selection = $req_patient_selection->fetch()){
+                              // permet de donner une seleciton du patient correspondant au RDV
+                              if ( $patient_selection['pkpatient'] == $rdv['fkpatient']) {
+                                echo '<option selected value="'.$patient_selection['pkpatient'].'"> '.$patient_selection['nom'].' '.$patient_selection['prenom'].'</option>';
+                              } else {
+                                echo '<option value="'.$patient_selection['pkpatient'].'"> '.$patient_selection['nom'].' '.$patient_selection['prenom'].'</option>';
+                              }
+                            }
+                           ?>
     										</select>
     									</div>
     								</div>
@@ -144,13 +152,21 @@
     									<label class="col-sm-4 col-form-label">Docteur</label>
     									<div class="col-sm-8">
     										<select class="custom-select mr-sm-2" name="fkmedecin" >
-    											<?php ?>
+                          <?php
+                            $req_medecin_selection = $linkpdo->prepare('SELECT * FROM medecin');
+                            $req_medecin_selection->execute();
+                            while($medecin_selection = $req_medecin_selection->fetch()){
+                              // permet de donner une seleciton du medecin correspondant au RDV
+                              if ( $medecin_selection['pkmedecin'] == $rdv['fkmedecin']) {
+                                echo '<option selected value="'.$medecin_selection['pkmedecin'].'"> '.$medecin_selection['nom'].' '.$medecin_selection['prenom'].'</option>';
+                              } else {
+                                echo '<option value="'.$medecin_selection['pkmedecin'].'"> '.$medecin_selection['nom'].' '.$medecin_selection['prenom'].'</option>';
+                              }
+                            }
+                           ?>
     										</select>
     									</div>
     								</div>
-
-
-
                     <br>
                     <input type="hidden" value="<?php echo $rdv['pkrdv'];?>" name="pkrdv" />
                     <input class="btn btn-success float-right" type="submit" value="Enregistrer les modifications" name="modification">
