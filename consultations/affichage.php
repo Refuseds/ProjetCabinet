@@ -1,48 +1,48 @@
 <?php include '../secure.php';?>
 <?php include '../connexionBDD.php';?>
 <?php
-// ajout de données
-if( isset($_POST['valid'])){
-  $req = $linkpdo->prepare('INSERT INTO rdv (
-                                  date,
-                                  heure,
-                                  duree,
-                                  fkpatient,
-                                  fkmedecin
-                                )
-                          VALUES(
-                              :ldate,
-                              :lheure,
-                              :lduree,
-                              :lfkpatient,
-                              :lfkpatient
-                            )
-                      ');
-  $req->execute(array(
-                      'ldate' => $_POST['date'],
-                      'lheure' => $_POST['heure'],
-                      'lduree' => $_POST['duree'],
-                      'lfkpatient' => $_POST['patient'],
-                      'lfkpatient' =>$_POST['medecin']
-  ));
-}
-// suppression de données
-if( isset($_POST['suppression'])) {
-  $req = $linkpdo->prepare('DELETE FROM  rdv WHERE pkrdv = :pkrdv');
-  $req->execute(array('pkrdv' => $_POST['pkrdv'],));
-}
-// modification de données
-if( isset($_POST['modification'])){
-  $req = $linkpdo->prepare('UPDATE rdv SET date = :date, heure = :heure, duree = :duree, fkpatient = :fkpatient, fkmedecin = :fkmedecin WHERE pkrdv = :pkrdv');
-  $req->execute(array(
-                      'date' => $_POST['date'],
-                      'heure' => $_POST['heure'],
-                      'duree' => $_POST['duree'],
-                      'fkpatient' => $_POST['fkpatient'],
-                      'fkmedecin' => $_POST['fkmedecin'],
-                      'pkrdv' => $_POST['pkrdv']
-  ));
-}
+  // ajout de données
+  if( isset($_POST['valid'])){
+    $req = $linkpdo->prepare('INSERT INTO rdv (
+                                    date,
+                                    heure,
+                                    duree,
+                                    fkpatient,
+                                    fkmedecin
+                                  )
+                            VALUES(
+                                :date,
+                                :heure,
+                                :duree,
+                                :fkpatient,
+                                :fkmedecin
+                              )
+                        ');
+    $req->execute(array(
+                        'date' => $_POST['date'],
+                        'heure' => $_POST['heure'],
+                        'duree' => $_POST['duree'],
+                        'fkpatient' => $_POST['patient'],
+                        'fkmedecin' =>$_POST['medecin']
+    ));
+  }
+  // suppression de données
+  if( isset($_POST['suppression'])) {
+    $req = $linkpdo->prepare('DELETE FROM  rdv WHERE pkrdv = :pkrdv');
+    $req->execute(array('pkrdv' => $_POST['pkrdv'],));
+  }
+  // modification de données
+  if( isset($_POST['modification'])){
+    $req = $linkpdo->prepare('UPDATE rdv SET date = :date, heure = :heure, duree = :duree, fkpatient = :fkpatient, fkmedecin = :fkmedecin WHERE pkrdv = :pkrdv');
+    $req->execute(array(
+                        'date' => $_POST['date'],
+                        'heure' => $_POST['heure'],
+                        'duree' => $_POST['duree'],
+                        'fkpatient' => $_POST['fkpatient'],
+                        'fkmedecin' => $_POST['fkmedecin'],
+                        'pkrdv' => $_POST['pkrdv']
+    ));
+  }
 ?>
 <html lang="fr">
   <head>
