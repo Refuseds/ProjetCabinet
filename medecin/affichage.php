@@ -170,7 +170,7 @@ if( isset($_POST['modification'])){
   				<div class="modal-body">
   					<form action="affichage.php" method="post">
   						<div class="form-group row">
-  							<label class="col-sm-4 col-form-label">Civilité</label>
+  							<label class="col-sm-4 col-form-labels">Civilité</label>
   							<div class="col-sm-8">
   								<select class="custom-select mr-sm-2" name="civilite" >
   									<option selected value="1">Mr</option>
@@ -181,13 +181,13 @@ if( isset($_POST['modification'])){
   						<div class="form-group row">
   							<label class="col-sm-4 col-form-label">Nom</label>
   							<div class="col-sm-8">
-  								<input type="text" class="form-control" name="nom">
+  								<input type="text" class="form-control" name="nom" required>
   							</div>
   						</div>
   						<div class="form-group row">
   							<label class="col-sm-4 col-form-label">Prénom</label>
   							<div class="col-sm-8">
-  								<input type="text" class="form-control" name="prenom">
+  								<input type="text" class="form-control" name="prenom" required>
   							</div>
   						</div>
   						<br>

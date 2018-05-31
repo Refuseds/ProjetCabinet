@@ -228,13 +228,13 @@
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Date</label>
 									<div class="col-sm-8">
-										<input type="date" class="form-control" name="date">
+										<input type="date" class="form-control" name="date" required>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Heure</label>
 									<div class="col-sm-8">
-										<input type="time" class="form-control" name="heure">
+										<input type="time" class="form-control" name="heure" required>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -246,8 +246,8 @@
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Patient</label>
 									<div class="col-sm-8">
-										<select class="custom-select mr-sm-2" name="patient" >
-  										<option> Veuillez choisir un patient </option>
+										<select class="custom-select mr-sm-2" name="patient" required>
+  										<option value =""> Veuillez choisir un patient </option>
                         <!-- injection de la liste de patient -->
   											<?php
   										    $reqpatient = $linkpdo->prepare('SELECT * FROM patient ');
@@ -262,8 +262,8 @@
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Docteur</label>
 									<div class="col-sm-8">
-										<select class="custom-select mr-sm-2" name="medecin" >
-  										<option> Veuillez choisir un médecin </option>
+										<select class="custom-select mr-sm-2" name="medecin" required>
+  										<option value="" > Veuillez choisir un médecin </option>
                         <!-- injection de la liste de medecin -->
   											<?php
   										    $reqmedecin = $linkpdo->prepare('SELECT * FROM medecin ');
