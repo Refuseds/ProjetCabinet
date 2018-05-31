@@ -51,9 +51,9 @@ $options = [
 // $hash = password_hash("admin", PASSWORD_BCRYPT, $options);
 ?>
 <HTML>
+	<header>
+		<?php include('menu.php')?>
+	</header>
 	<body>
-		<header>
-			<?php include('menu.php')?>
-		</header>
 	</body>
 </HTML>

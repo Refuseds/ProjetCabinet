@@ -2,7 +2,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
   <script src="/bootstrap/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="/css/ajout.css"> 
+  <link rel="stylesheet" type="text/css" href="/css/ajout.css">
 
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
