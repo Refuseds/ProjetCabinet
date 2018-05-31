@@ -15,7 +15,6 @@ session_start();
       <input type="password" name="pw" class="form-control" placeholder="mot de passe" required>
 			<input type="hidden" value="true" name="tentative" />
       <button class="btn btn-lg btn-primary btn-block" name="envoyer" type="submit">Connexion</button>
-      <p class="mt-5 mb-3 text-muted">Cabinet par Poussard & Romero</p>
     </form>
 		<div class="alerte">
 			<?php
@@ -37,4 +36,7 @@ session_start();
 			?>
 		</div>
   </body>
+	<footer>
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Cette œuvre est mise à disposition selon les termes de la <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Licence Creative Commons Attribution</a>.
+	</footer>
 </HTML>
