@@ -228,13 +228,13 @@
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Date</label>
 									<div class="col-sm-8">
-										<input type="date" class="form-control" name="date" required>
+										<input type="date" class="form-control" name="date" min="<?php echo date("Y-m-d");?>" required>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Heure</label>
 									<div class="col-sm-8">
-										<input type="time" class="form-control" name="heure" required>
+										<input type="time" class="form-control" name="heure" min="08:00" max="17:00" required>
 									</div>
 								</div>
 								<div class="form-group row">

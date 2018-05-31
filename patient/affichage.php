@@ -287,7 +287,7 @@ if( isset($_POST['modification'])){
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Date de naissance</label>
 								<div class="col-sm-8">
-									<input type="date" class="form-control" name="datenaissance">
+									<input type="date" class="form-control" name="datenaissance" required>
 								</div>
 							</div>
 							<div class="form-group row">
@@ -299,7 +299,9 @@ if( isset($_POST['modification'])){
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">N° sécurité sociale</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" name="numsecurite" required>
+								<!--	<input type="number" class="form-control" name="numsecurite" min="99999999999999" max="1000000000000000" required>-->
+									<input type="text" class="form-control" name="numsecurite" pattern="[0-9]{15}" title="15 chiffres"required>
+
 								</div>
 							</div>
 							<div class="form-group row">
