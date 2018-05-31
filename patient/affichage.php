@@ -61,17 +61,17 @@ if( isset($_POST['modification'])){
 	<header>
 		<?php include('../menu.php')?>
 	</header>
-	<?php
-	// liste des patients
-	$req = $linkpdo->prepare(" SELECT  pkpatient,civilite,nom,prenom,adresse,
-		DATE_FORMAT(datenaissance, '%d/%m/%Y') AS datenaissance,
-		lieunaissance,
-		numsecurite
-		FROM patient
-		");
-	$req->execute();
-	?>
 	<body>
+		<?php
+		// liste des patients
+		$req = $linkpdo->prepare(" SELECT  pkpatient,civilite,nom,prenom,adresse,
+			DATE_FORMAT(datenaissance, '%d/%m/%Y') AS datenaissance,
+			lieunaissance,
+			numsecurite
+			FROM patient
+			");
+			$req->execute();
+		?>
 		<br>
 		<div class="container">
 			<h2>Liste des patients</h2>
@@ -208,7 +208,6 @@ if( isset($_POST['modification'])){
 		<button type="button" class="btn btn-success float-right ajouter" data-toggle="modal" data-target="#ajout">
 			Ajouter un patient
 		</button>
-		</div>
 		<!-- Modale d'ajout -->
 		<div class="modal fade" id="ajout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
