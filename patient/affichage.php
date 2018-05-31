@@ -10,7 +10,8 @@ if( isset($_POST['valid'])){
 		adresse,
 		datenaissance,
 		lieunaissance,
-		numsecurite
+		numsecurite,
+		fkmedecin
 	)
 	VALUES(
 		:lcivilite,
@@ -19,7 +20,8 @@ if( isset($_POST['valid'])){
 		:ladresse,
 		:ldatenaissance,
 		:llieunaissance,
-		:lnumsecurite
+		:lnumsecurite,
+		:lfkmedecin
 	)
 	');
 	$req->execute(array(
@@ -29,7 +31,8 @@ if( isset($_POST['valid'])){
 		'ladresse' => $_POST['adresse'],
 		'ldatenaissance' => $_POST['datenaissance'],
 		'llieunaissance' => $_POST['lieunaissance'],
-		'lnumsecurite' => $_POST['numsecurite']
+		'lnumsecurite' => $_POST['numsecurite'],
+		'lfkmedecin' => $_POST['medecin']
 	));
 }
 // suppression de données
@@ -64,13 +67,13 @@ if( isset($_POST['modification'])){
 	<body>
 		<?php
 		// liste des patients
-		$req = $linkpdo->prepare(" SELECT  pkpatient,civilite,nom,prenom,adresse,
+		$req_liste_patient = $linkpdo->prepare(" SELECT  pkpatient,civilite,nom,prenom,adresse,fkmedecin,
 			DATE_FORMAT(datenaissance, '%d/%m/%Y') AS datenaissance,
 			lieunaissance,
 			numsecurite
 			FROM patient
 			");
-			$req->execute();
+		$req_liste_patient->execute();
 		?>
 		<br>
 		<div class="container">
@@ -85,31 +88,41 @@ if( isset($_POST['modification'])){
 						<th>Date de naissance</th>
 						<th>Lieu de naissance</th>
 						<th>Sécurité sociale</th>
+						<th>Médecin traitant</th>
 						<th>Modification / suppression</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php
 					// construction des données du tableau
-					while($donnees = $req->fetch()){
+					while($donnees_patient = $req_liste_patient->fetch()){
 						echo '<tr>';
-						if ( $donnees['civilite'] == '1' ) {
+						if ( $donnees_patient['civilite'] == '1' ) {
 							echo '<td>Homme</td>';
 						} else {
 							echo '<td>Femme</td>';
 						}
-						echo '<td>'.$donnees['nom'].'</td>';
-						echo '<td>'.$donnees['prenom'].'</td>';
-						echo '<td>'.$donnees['adresse'].'</td>';
-						echo '<td>'.$donnees['datenaissance'].'</td>';
-						echo '<td>'.$donnees['lieunaissance'].'</td>';
-						echo '<td>'.$donnees['numsecurite'].'</td>';
+						echo '<td>'.$donnees_patient['nom'].'</td>';
+						echo '<td>'.$donnees_patient['prenom'].'</td>';
+						echo '<td>'.$donnees_patient['adresse'].'</td>';
+						echo '<td>'.$donnees_patient['datenaissance'].'</td>';
+						echo '<td>'.$donnees_patient['lieunaissance'].'</td>';
+						echo '<td>'.$donnees_patient['numsecurite'].'</td>';
+						$req_medecin_traitant =  $linkpdo->prepare("SELECT nom FROM medecin WHERE pkmedecin LIKE :lfkmedecin");
+						$req_medecin_traitant -> execute(array('lfkmedecin' => $donnees_patient['fkmedecin']));
+						$donnees_medecin = $req_medecin_traitant->fetch();
+						if($donnees_medecin['nom'] == ''){
+							echo '<td> Non assigné </td>';
+						}else{
+							echo '<td> Dr. '.$donnees_medecin['nom'].'</td>';
+						}
+
 						// bouton pointant la modale de modification
-						echo '<td>'.'<a data-toggle="modal" data-target="#modifier'.$donnees['pkpatient'].'"><img src="/img/wrench.png"></a>';
+						echo '<td>'.'<a data-toggle="modal" data-target="#modifier'.$donnees_patient['pkpatient'].'"><img src="/img/wrench.png"></a>';
 
 						// modal de mofification
 					?>
-						<div class="modal fade" id="modifier<?php echo $donnees['pkpatient'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal fade" id="modifier<?php echo $donnees_patient['pkpatient'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -124,49 +137,49 @@ if( isset($_POST['modification'])){
 												<label class="col-sm-4 col-form-label">Civilité</label>
 												<div class="col-sm-8">
 													<select class="custom-select mr-sm-2" name="civilite" >
-														<option <?php if ($donnees['civilite'] == 1 ) {echo 'selected ';} ?> value="1">Mr.</option>
-														<option <?php if ($donnees['civilite'] == 0 ) {echo 'selected ';} ?> value="0">Mme</option>
+														<option <?php if ($donnees_patient['civilite'] == 1 ) {echo 'selected ';} ?> value="1">Mr.</option>
+														<option <?php if ($donnees_patient['civilite'] == 0 ) {echo 'selected ';} ?> value="0">Mme</option>
 													</select>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Nom</label>
 												<div class="col-sm-8">
-													<input type="text" value="<?php echo $donnees['nom'];?>" class="form-control" name="nom">
+													<input type="text" value="<?php echo $donnees_patient['nom'];?>" class="form-control" name="nom">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Prénom</label>
 												<div class="col-sm-8">
-													<input type="text" value="<?php echo $donnees['prenom'];?>" class="form-control" name="prenom">
+													<input type="text" value="<?php echo $donnees_patient['prenom'];?>" class="form-control" name="prenom">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Adresse</label>
 												<div class="col-sm-8">
-													<input type="text" value="<?php echo $donnees['adresse'];?>" class="form-control" name="adresse">
+													<input type="text" value="<?php echo $donnees_patient['adresse'];?>" class="form-control" name="adresse">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Date de naissance</label>
 												<div class="col-sm-8">
-													<input type="date" value="<?php echo substr($donnees['datenaissance'], 6, 4).'-'.substr($donnees['datenaissance'], 3, 2).'-'.substr($donnees['datenaissance'], 0, 2); ?>" class="form-control" name="datenaissance">
+													<input type="date" value="<?php echo substr($donnees_patient['datenaissance'], 6, 4).'-'.substr($donnees['datenaissance'], 3, 2).'-'.substr($donnees['datenaissance'], 0, 2); ?>" class="form-control" name="datenaissance">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Lieu de naissance</label>
 												<div class="col-sm-8">
-													<input type="text" value="<?php echo $donnees['lieunaissance'];?>" class="form-control" name="lieunaissance">
+													<input type="text" value="<?php echo $donnees_patient['lieunaissance'];?>" class="form-control" name="lieunaissance">
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">N° sécurité sociale</label>
 												<div class="col-sm-8">
-													<input type="text" value="<?php echo $donnees['numsecurite'];?>" class="form-control" name="numsecurite">
+													<input type="text" value="<?php echo $donnees_patient['numsecurite'];?>" class="form-control" name="numsecurite">
 												</div>
 											</div>
 											<br>
-											<input type="hidden" value="<?php echo $donnees['pkpatient'];?>" name="pkpatient">
+											<input type="hidden" value="<?php echo $donnees_patient['pkpatient'];?>" name="pkpatient">
 											<input class="btn btn-success float-right" type="submit" value="Enregitrer les modifications" name="modification">
 										</div>
 									</form>
@@ -177,10 +190,10 @@ if( isset($_POST['modification'])){
 						// espace entre les deux icones modifier et supprimer
 						echo '<a>&emsp;&emsp;&emsp;</a>';
 						// bouton pointant la modale de suppression
-						echo '<a data-toggle="modal" data-target="#supprimer'.$donnees['pkpatient'].'"><img src="/img/trash.png"></a></td>';
+						echo '<a data-toggle="modal" data-target="#supprimer'.$donnees_patient['pkpatient'].'"><img src="/img/trash.png"></a></td>';
 						// modal de Suppression
 						?>
-						<div class="modal fade" id="supprimer<?php echo $donnees['pkpatient'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal fade" id="supprimer<?php echo $donnees_patient['pkpatient'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     					<div class="modal-dialog" role="document">
     						<div class="modal-content">
     							<div class="modal-header">
@@ -191,10 +204,10 @@ if( isset($_POST['modification'])){
     							</div>
     							<div class="modal-body">
                   <br>
-                  <a> Êtes-vous sûr de vouloir supprimer le patient  <b>'<?php echo $donnees['prenom'].' '.$donnees['nom'];?></b>  ?
+                  <a> Êtes-vous sûr de vouloir supprimer le patient  <b>'<?php echo $donnees_patient['prenom'].' '.$donnees_patient['nom'];?></b>  ?
     								<form action="affichage.php" method="post">
     									<br>
-                      <input type="hidden" value="<?php echo $donnees['pkpatient'];?>" name="pkpatient">
+                      <input type="hidden" value="<?php echo $donnees_patient['pkpatient'];?>" name="pkpatient">
     									<input class="btn btn-outline-danger float-right" type="submit" value="Supprimer" name="suppression">
     							</form>
     						</div>
@@ -263,6 +276,22 @@ if( isset($_POST['modification'])){
 								<label class="col-sm-4 col-form-label">N° sécurité sociale</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" name="numsecurite">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-4 col-form-label">Médecin traitant</label>
+								<div class="col-sm-8">
+									<select class="custom-select mr-sm-2" name="medecin" >
+										<option> Veuillez choisir un médecin </option>
+										<!-- injection de la liste de medecin -->
+										<?php
+										$reqmedecin = $linkpdo->prepare('SELECT * FROM medecin ');
+										$reqmedecin->execute();
+												while($m=$reqmedecin->fetch()){
+													echo '<option value="'.$m['pkmedecin'].'"> '.$m['nom'].' '.$m['prenom'].'</option>';
+												}
+										?>
+									</select>
 								</div>
 							</div>
 							<br>

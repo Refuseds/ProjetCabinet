@@ -9,7 +9,7 @@ session_start();
 	<body class="text-center">
     <form class="form-signin" method="POST" action="home.php">
       <img class="mb-4" src="/img/logo.png" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Veillez vous identifier</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Veuillez vous identifier</h1>
 			<br>
       <input type="text" name="id" class="form-control" placeholder="identifiant" required autofocus>
       <input type="password" name="pw" class="form-control" placeholder="mot de passe" required>
