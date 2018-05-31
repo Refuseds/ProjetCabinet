@@ -43,7 +43,7 @@ if ( isset($_POST['suppression'])) {
 // modification de donnée
 if( isset($_POST['modification'])){
 	$req = $linkpdo->prepare('UPDATE patient SET civilite = :lcivilite, nom = :lnom, prenom = :lprenom, adresse = :ladresse,
-		datenaissance = :ldatenaissance,	lieunaissance = :llieunaissance,	numsecurite = :lnumsecurite WHERE pkpatient = :lpk');
+		datenaissance = :ldatenaissance,	lieunaissance = :llieunaissance,	numsecurite = :lnumsecurite, fkmedecin = :lfkmedecin WHERE pkpatient = :lpk');
 	$req->execute(array(
 		'lcivilite' => $_POST['civilite'],
 		'lnom' => $_POST['nom'],
@@ -52,7 +52,8 @@ if( isset($_POST['modification'])){
 		'ldatenaissance' => $_POST['datenaissance'],
 		'llieunaissance' => $_POST['lieunaissance'],
 		'lnumsecurite' => $_POST['numsecurite'],
-		'lpk' => $_POST['pkpatient']
+		'lpk' => $_POST['pkpatient'],
+		'lfkmedecin' => $_POST['fkmedecin']
 	));
 }
 ?>
@@ -98,9 +99,9 @@ if( isset($_POST['modification'])){
 					while($donnees_patient = $req_liste_patient->fetch()){
 						echo '<tr>';
 						if ( $donnees_patient['civilite'] == '1' ) {
-							echo '<td>Homme</td>';
+							echo '<td>Mr.</td>';
 						} else {
-							echo '<td>Femme</td>';
+							echo '<td>Mme.</td>';
 						}
 						echo '<td>'.$donnees_patient['nom'].'</td>';
 						echo '<td>'.$donnees_patient['prenom'].'</td>';
@@ -176,6 +177,29 @@ if( isset($_POST['modification'])){
 												<label class="col-sm-4 col-form-label">N° sécurité sociale</label>
 												<div class="col-sm-8">
 													<input type="text" value="<?php echo $donnees_patient['numsecurite'];?>" class="form-control" name="numsecurite">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-sm-4 col-form-label">Docteur</label>
+												<div class="col-sm-8">
+													<select class="custom-select mr-sm-2" name="fkmedecin" >
+														<?php
+														if($donnees_patient['fkmedecin'=='']){
+															echo '<option selected value="NULL"> Aucun médecin assigné </option>';
+
+														}
+															$req_medecin_selection = $linkpdo->prepare('SELECT * FROM medecin');
+															$req_medecin_selection->execute();
+															while($medecin_selection = $req_medecin_selection->fetch()){
+																// permet de donner une seleciton du medecin correspondant au patient
+																if ( $medecin_selection['pkmedecin'] == $donnees_patient['fkmedecin']) {
+																	echo '<option selected value="'.$medecin_selection['pkmedecin'].'"> '.$medecin_selection['nom'].' '.$medecin_selection['prenom'].'</option>';
+																} else {
+																	echo '<option value="'.$medecin_selection['pkmedecin'].'"> '.$medecin_selection['nom'].' '.$medecin_selection['prenom'].'</option>';
+																}
+															}
+														?>
+													</select>
 												</div>
 											</div>
 											<br>

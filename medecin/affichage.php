@@ -69,9 +69,9 @@ if( isset($_POST['modification'])){
               // transforme le stockage en format binaire en Homme / Femme
   						echo '<tr>';
   						if ( $donnees['civilite'] == '1' ) {
-  							echo '<td>Homme</td>';
+  							echo '<td>Mr.</td>';
   						} else {
-  							echo '<td>Femme</td>';
+  							echo '<td>Mme.</td>';
   						}
   						echo '<td>'.$donnees['nom'].'</td>';
   						echo '<td>'.$donnees['prenom'].'</td>';
