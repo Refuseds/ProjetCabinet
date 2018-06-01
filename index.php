@@ -1,5 +1,8 @@
 <?php
 session_start();
+if ( isset($_POST['deconnexion']) ) {
+	session_destroy();
+}
 ?>
 <HTML>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -7,7 +10,7 @@ session_start();
 	<script src="/bootstrap/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/css/login.css">
 	<body class="text-center">
-    <form class="form-signin" method="POST" action="home.php">
+    <form class="form-signin" method="POST" action="/consultations/affichage.php">
       <img class="mb-4" src="/img/logo.png" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Veuillez vous identifier</h1>
 			<br>
@@ -20,7 +23,7 @@ session_start();
 			<?php
 			if( isset($_SESSION['login']) ) {
 				if ( $_SESSION['login'] == 'ok' ) {
-					header('Location: home.php');
+					header('Location: /consultations/affichage.php');
 				}
 				if ( $_SESSION['login'] == 'incomplet' ) {
 					echo '<div class="alert alert-danger" role="alert">

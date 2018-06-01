@@ -21,7 +21,7 @@
       </div>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <form method="POST" action="../home.php">
+          <form method="POST" action="/index.php">
             <button type="submit" name="deconnexion" class="btn btn-dark">Se déconnecter</button>
           </form>
         </li>

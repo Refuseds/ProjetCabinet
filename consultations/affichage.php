@@ -1,6 +1,44 @@
 <?php include '../secure.php';?>
 <?php include '../connexionBDD.php';?>
 <?php
+  if ($_SESSION['login'] != 'ok') {
+    // si un des champs d'identification est vide
+    if ( (empty($_POST['id']) || empty($_POST['pw']) ) ) {
+      $_SESSION["login"] = 'incomplet';
+      header('Location: /index.php');
+    } else {
+      // connexion à la BDD
+      try {
+        $linkpdo = new PDO("mysql:host=localhost;dbname=cabinet", 'root', 'root');
+      } catch (Exception $e) {
+        die('Erreur : ' . $e->getMessage());
+      }
+
+      // preparation de la requete
+      $req = $linkpdo->prepare("SELECT password FROM login WHERE identifiant = :id");
+
+      //Exécution de la requête avec les paramètres passés sous forme de tableau indexé
+      $req->execute(array('id'=>$_POST['id'] ));
+      $data = $req->fetch();
+      // si requete fausse redirection sinon creation de session correcte
+      if ($data == false ) {
+        $_SESSION["login"] = 'incorrect';
+        header('Location: /index.php');
+      } else {
+        if ( password_verify($_POST['pw'], $data[0]) ) {
+          $_SESSION["login"] = 'ok';
+        } else {
+          header('Location: /index.php');
+        }
+      }
+    }
+  }
+?>
+
+
+
+
+<?php
   // ajout de données
   if( isset($_POST['valid'])){
     $req = $linkpdo->prepare('INSERT INTO rdv (
@@ -264,7 +302,7 @@
 									</div>
 								</div>
                 <script language="Javascript" >
-        
+
                   function maFonction()
                   {
                       //var marque = $(":select[name=patient]").value();    // On récupère la valeur du sélect ayant pour id "patient"
