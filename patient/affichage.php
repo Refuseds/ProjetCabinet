@@ -144,13 +144,13 @@ if( isset($_POST['modification'])){
 												</div>
 											</div>
 											<div class="form-group row">
-												<label class="col-sm-4 col-form-label">Nom</label>
+												<label class="col-sm-4 col-form-label">Nom<span style="color: #fb4141">*</span></label>
 												<div class="col-sm-8">
 													<input type="text" value="<?php echo $donnees_patient['nom'];?>" class="form-control" name="nom">
 												</div>
 											</div>
 											<div class="form-group row">
-												<label class="col-sm-4 col-form-label">Prénom</label>
+												<label class="col-sm-4 col-form-label">Prénom<span style="color: #fb4141">*</span></label>
 												<div class="col-sm-8">
 													<input type="text" value="<?php echo $donnees_patient['prenom'];?>" class="form-control" name="prenom">
 												</div>
@@ -162,7 +162,7 @@ if( isset($_POST['modification'])){
 												</div>
 											</div>
 											<div class="form-group row">
-												<label class="col-sm-4 col-form-label">Date de naissance</label>
+												<label class="col-sm-4 col-form-label">Date de naissance<span style="color: #fb4141">*</span></label>
 												<div class="col-sm-8">
 													<input type="date" value="<?php echo $donnees_patient['datenaissance'] ?>" class="form-control" name="datenaissance">
 												</div>
@@ -174,7 +174,7 @@ if( isset($_POST['modification'])){
 												</div>
 											</div>
 											<div class="form-group row">
-												<label class="col-sm-4 col-form-label">N° sécurité sociale</label>
+												<label class="col-sm-4 col-form-label">N° sécurité sociale<span style="color: #fb4141">*</span></label>
 												<div class="col-sm-8">
 													<input type="text" value="<?php echo $donnees_patient['numsecurite'];?>" class="form-control" name="numsecurite">
 												</div>
@@ -203,6 +203,7 @@ if( isset($_POST['modification'])){
 												</div>
 											</div>
 											<br>
+											<label class="col-sm-4 col-form-label"><span style="color: #fb4141">*<font size="-2"> Champs obligatoires</font></span></label>
 											<input type="hidden" value="<?php echo $donnees_patient['pkpatient'];?>" name="pkpatient">
 											<input class="btn btn-success float-right" type="submit" value="Enregitrer les modifications" name="modification">
 										</div>
@@ -267,13 +268,13 @@ if( isset($_POST['modification'])){
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-sm-4 col-form-label">Nom</label>
+								<label class="col-sm-4 col-form-label">Nom<span style="color: #fb4141">*</span></label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" name="nom" required>
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-sm-4 col-form-label">Prénom</label>
+								<label class="col-sm-4 col-form-label">Prénom<span style="color: #fb4141">*</span></label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" name="prenom" required>
 								</div>
@@ -285,7 +286,7 @@ if( isset($_POST['modification'])){
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-sm-4 col-form-label">Date de naissance</label>
+								<label class="col-sm-4 col-form-label">Date de naissance<span style="color: #fb4141">*</span></label>
 								<div class="col-sm-8">
 									<input type="date" class="form-control" name="datenaissance" required>
 								</div>
@@ -297,7 +298,7 @@ if( isset($_POST['modification'])){
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-sm-4 col-form-label">N° sécurité sociale</label>
+								<label class="col-sm-4 col-form-label">N° sécurité sociale<span style="color: #fb4141">*</span></label>
 								<div class="col-sm-8">
 								<!--	<input type="number" class="form-control" name="numsecurite" min="99999999999999" max="1000000000000000" required>-->
 									<input type="text" class="form-control" name="numsecurite" pattern="[0-9]{15}" title="15 chiffres"required>
@@ -321,6 +322,7 @@ if( isset($_POST['modification'])){
 								</div>
 							</div>
 							<br>
+							<label class="col-sm-4 col-form-label"><span style="color: #fb4141">*<font size="-2"> Champs obligatoires</font></span></label>
 							<input class="btn btn-success float-right" type="submit" value="Valider" name="valid">
 						</div>
 					</form>

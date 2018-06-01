@@ -102,18 +102,19 @@ if( isset($_POST['modification'])){
   											</div>
   										</div>
   										<div class="form-group row">
-  											<label class="col-sm-4 col-form-label">Nom</label>
+  											<label class="col-sm-4 col-form-label">Nom<span style="color: #fb4141">*</span></label>
   											<div class="col-sm-8">
   												<input type="text" value="<?php echo $donnees['nom'];?>" class="form-control" name="nom">
   											</div>
   										</div>
   										<div class="form-group row">
-  											<label class="col-sm-4 col-form-label">Prénom</label>
+  											<label class="col-sm-4 col-form-label">Prénom<span style="color: #fb4141">*</span></label>
   											<div class="col-sm-8">
   												<input type="text" value="<?php echo $donnees['prenom'];?>" class="form-control" name="prenom">
   											</div>
   										</div>
   										<br>
+											<label class="col-sm-4 col-form-label"><span style="color: #fb4141">*<font size="-2"> Champs obligatoires</font></span></label>
                       <input type="hidden" value="<?php echo $donnees['pkmedecin'];?>" name="pkmedecin" />
   										<input class="btn btn-success float-right" type="submit" value="Enregistrer les modifications" name="modification">
   									</div>
@@ -179,18 +180,19 @@ if( isset($_POST['modification'])){
   							</div>
   						</div>
   						<div class="form-group row">
-  							<label class="col-sm-4 col-form-label">Nom</label>
+  							<label class="col-sm-4 col-form-label">Nom<span style="color: #fb4141">*</span></label>
   							<div class="col-sm-8">
   								<input type="text" class="form-control" name="nom" required>
   							</div>
   						</div>
   						<div class="form-group row">
-  							<label class="col-sm-4 col-form-label">Prénom</label>
+  							<label class="col-sm-4 col-form-label">Prénom<span style="color: #fb4141">*</span></label>
   							<div class="col-sm-8">
   								<input type="text" class="form-control" name="prenom" required>
   							</div>
   						</div>
   						<br>
+							<label class="col-sm-4 col-form-label"><span style="color: #fb4141">*<font size="-2"> Champs obligatoires</font></span></label>
   						<input class="btn btn-success float-right" type="submit" value="Valider" name="valid">
   					</div>
   				</form>
