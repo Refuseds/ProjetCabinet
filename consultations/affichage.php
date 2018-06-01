@@ -47,12 +47,15 @@
 <html lang="fr">
   <head>
   	<meta charset="UTF-8" />
+
   	<title> Affichage des consultations</title>
   </head>
   <header>
     <?php include('../menu.php')?>
   </header>
   <body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
   	<?php
   		$reqrdv = $linkpdo->prepare("  SELECT  DATE_FORMAT(date, '%d/%m/%Y') AS date,
   											heure, duree, pkrdv, fkpatient, fkmedecin
@@ -246,7 +249,7 @@
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Patient</label>
 									<div class="col-sm-8">
-										<select class="custom-select mr-sm-2" name="patient" required>
+										<select  id="patient" class="custom-select mr-sm-2" name="patient" onChange="maFonction()" required>
   										<option value =""> Veuillez choisir un patient </option>
                         <!-- injection de la liste de patient -->
   											<?php
@@ -259,20 +262,40 @@
 										</select>
 									</div>
 								</div>
+                <script language="Javascript" >
+        
+                  function maFonction()
+                  {
+                      //var marque = $(":select[name=patient]").value();    // On récupère la valeur du sélect ayant pour id "patient"
+                      var patient = document.getElementById("patient").value;
+                     // alert("i = "+ patient);
+                     // $("#cc").html("Hello, World!");
+
+                     $.post('avoirMedecin.php',               // AJAX : On appelle un script php
+                      {id_patient: patient},          // Passage de la variable en paramètre
+                          function(data){
+                        $('#selection_medecin_defaut').html(data);             // On ajoute le résultat de se script dans la balise qui a pour id "conteneur". (un div ou un span comme tu le souhaites)
+                    });
+                                  }
+                </script>
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Docteur</label>
-									<div class="col-sm-8">
-										<select class="custom-select mr-sm-2" name="medecin" required>
-  										<option value="" > Veuillez choisir un médecin </option>
-                        <!-- injection de la liste de medecin -->
-  											<?php
-  										    $reqmedecin = $linkpdo->prepare('SELECT * FROM medecin ');
-  										    $reqmedecin->execute();
-    												while($m=$reqmedecin->fetch()){
-    													echo '<option value="'.$m['pkmedecin'].'"> '.$m['nom'].' '.$m['prenom'].'</option>';
-  												  }
-                        ?>
-										</select>
+									<div class="col-sm-8" >
+                    <div id="selection_medecin_defaut" >    
+
+                      <select class="custom-select mr-sm-2" name="medecin" required>
+
+                          <option value="" > Veuillez choisir un médecin </option>
+                            <!-- injection de la liste de medecin -->
+                            <?php
+                              $reqmedecin = $linkpdo->prepare('SELECT * FROM medecin ');
+                              $reqmedecin->execute();
+                                while($m=$reqmedecin->fetch()){
+                                  echo '<option value="'.$m['pkmedecin'].'"> '.$m['nom'].' '.$m['prenom'].'</option>';
+                                }
+                            ?>
+                      </select>
+                    </div> 
 									</div>
 								</div>
 								<br>
