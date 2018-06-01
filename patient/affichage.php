@@ -164,7 +164,7 @@ if( isset($_POST['modification'])){
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Date de naissance<span style="color: #fb4141">*</span></label>
 												<div class="col-sm-8">
-													<input type="date" value="<?php echo $donnees_patient['datenaissance'] ?>" class="form-control" name="datenaissance" max="<?php echo date("Y-m-d");?>" required>
+													<input type="date" value="<?php echo substr($donnees_patient['datenaissance'], 6, 4).'-'.substr($donnees_patient['datenaissance'], 3, 2).'-'.substr($donnees_patient['datenaissance'], 0, 2); ?>" class="form-control" name="datenaissance" max="<?php echo date("Y-m-d");?>" required>
 												</div>
 											</div>
 											<div class="form-group row">

@@ -8,10 +8,13 @@ ProjetCabinet
  - "*" sur les champs obligatoire
 - securisation saisie champ des modifs
 - bouton "cliquable" des modif et suppr (<a href> </a>)
+- recuperation date modif patient
 
 
 NON fait:
  - Un contrôle de non-chevauchement des consultations pour un même médecin.
-- recuperation date modif patient
+
+
 - renvoi vers la page d'acceuil a la connexion et lorsque on clique sur le logo
+
 -  caracteres speciaux
