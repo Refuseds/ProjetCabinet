@@ -117,25 +117,25 @@
                     <div class="form-group row">
                       <label class="col-sm-4 col-form-label">Date<span style="color: #fb4141">*</span></label>
                       <div class="col-sm-8">
-                        <input type="date" value="<?php echo substr($rdv['date'], 6, 4).'-'.substr($rdv['date'], 3, 2).'-'.substr($rdv['date'], 0, 2); ?>" class="form-control" name="date">
+                        <input type="date" value="<?php echo substr($rdv['date'], 6, 4).'-'.substr($rdv['date'], 3, 2).'-'.substr($rdv['date'], 0, 2); ?>" class="form-control" name="date" required>
                       </div>
                     </div>
                     <div class="form-group row">
     									<label class="col-sm-4 col-form-label">Heure<span style="color: #fb4141">*</span></label>
     									<div class="col-sm-8">
-    										<input type="time" value="<?php echo $rdv['heure']; ?>" class="form-control" name="heure">
+    										<input type="time" value="<?php echo $rdv['heure']; ?>" class="form-control" name="heure" required>
     									</div>
     								</div>
     								<div class="form-group row">
     									<label class="col-sm-4 col-form-label">Durée<span style="color: #fb4141">*</span></label>
     									<div class="col-sm-8">
-    										<input type="time" value="<?php echo $rdv['duree']; ?>" class="form-control" name="duree">
+    										<input type="time" value="<?php echo $rdv['duree']; ?>" class="form-control" name="duree" required>
     									</div>
     								</div>
                     <div class="form-group row">
     									<label class="col-sm-4 col-form-label">Patient<span style="color: #fb4141">*</span></label>
     									<div class="col-sm-8">
-    										<select class="custom-select mr-sm-2" name="fkpatient" >
+    										<select class="custom-select mr-sm-2" name="fkpatient" required>
                           <?php
                             $req_patient_selection = $linkpdo->prepare('SELECT * FROM patient');
                             $req_patient_selection->execute();

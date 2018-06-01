@@ -6,11 +6,11 @@ ProjetCabinet
 
 
  - "*" sur les champs obligatoire
+- securisation saisie champ des modifs
 
 
 NON fait:
  - Un contrôle de non-chevauchement des consultations pour un même médecin.
-- securisation saisie champ des modifs
 - recuperation date modif patient
 - renvoi vers la page d'acceuil a la connexion et lorsque on clique sur le logo
 -  caracteres speciaux

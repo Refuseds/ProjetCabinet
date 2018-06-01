@@ -146,13 +146,13 @@ if( isset($_POST['modification'])){
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Nom<span style="color: #fb4141">*</span></label>
 												<div class="col-sm-8">
-													<input type="text" value="<?php echo $donnees_patient['nom'];?>" class="form-control" name="nom">
+													<input type="text" value="<?php echo $donnees_patient['nom'];?>" class="form-control" name="nom" required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Prénom<span style="color: #fb4141">*</span></label>
 												<div class="col-sm-8">
-													<input type="text" value="<?php echo $donnees_patient['prenom'];?>" class="form-control" name="prenom">
+													<input type="text" value="<?php echo $donnees_patient['prenom'];?>" class="form-control" name="prenom" required>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -164,19 +164,19 @@ if( isset($_POST['modification'])){
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Date de naissance<span style="color: #fb4141">*</span></label>
 												<div class="col-sm-8">
-													<input type="date" value="<?php echo $donnees_patient['datenaissance'] ?>" class="form-control" name="datenaissance">
+													<input type="date" value="<?php echo $donnees_patient['datenaissance'] ?>" class="form-control" name="datenaissance" max="<?php echo date("Y-m-d");?>" required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Lieu de naissance</label>
 												<div class="col-sm-8">
-													<input type="text" value="<?php echo $donnees_patient['lieunaissance'];?>" class="form-control" name="lieunaissance">
+													<input type="text" value="<?php echo $donnees_patient['lieunaissance'];?>" class="form-control" name="lieunaissance" >
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">N° sécurité sociale<span style="color: #fb4141">*</span></label>
 												<div class="col-sm-8">
-													<input type="text" value="<?php echo $donnees_patient['numsecurite'];?>" class="form-control" name="numsecurite">
+													<input type="text" value="<?php echo $donnees_patient['numsecurite'];?>" class="form-control" name="numsecurite" required>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -288,7 +288,7 @@ if( isset($_POST['modification'])){
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Date de naissance<span style="color: #fb4141">*</span></label>
 								<div class="col-sm-8">
-									<input type="date" class="form-control" name="datenaissance" required>
+									<input type="date" class="form-control" name="datenaissance" max="<?php echo date("Y-m-d");?>" required>
 								</div>
 							</div>
 							<div class="form-group row">
