@@ -100,7 +100,7 @@
   						echo '<td>'.$m['prenom'].'</td>';
 
               // bouton pointant la modale de modification
-              echo '<td>'.'<a data-toggle="modal" data-target="#modifier'.$rdv['pkrdv'].'"><img src="/img/wrench.png"></a>';
+              echo '<td>'.'<a href="" data-toggle="modal" data-target="#modifier'.$rdv['pkrdv'].'"><img src="/img/wrench.png"></a>';
           ?>
           <!-- Modal de modification -->
           <div class="modal fade" id="modifier<?php echo $rdv['pkrdv'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -184,7 +184,7 @@
             // espace entre les deux icones modifier et supprimer
             echo '<a>&emsp;&emsp;&emsp;</a>';
             // bouton pointant la modale de suppression
-            echo '<a data-toggle="modal" data-target="#supprimer'.$rdv['pkrdv'].'"><img src="/img/trash.png"></a></td>';
+            echo '<a href="" data-toggle="modal" data-target="#supprimer'.$rdv['pkrdv'].'"><img src="/img/trash.png"></a></td>';
           ?>
           <!-- Modale de suppression-->
           <div class="modal fade" id="supprimer<?php echo $rdv['pkrdv'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

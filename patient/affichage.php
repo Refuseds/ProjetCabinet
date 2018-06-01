@@ -119,7 +119,7 @@ if( isset($_POST['modification'])){
 						}
 
 						// bouton pointant la modale de modification
-						echo '<td>'.'<a data-toggle="modal" data-target="#modifier'.$donnees_patient['pkpatient'].'"><img src="/img/wrench.png"></a>';
+						echo '<td>'.'<a href="" data-toggle="modal" data-target="#modifier'.$donnees_patient['pkpatient'].'"><img src="/img/wrench.png"></a>';
 
 						// modal de mofification
 					?>
@@ -215,7 +215,7 @@ if( isset($_POST['modification'])){
 						// espace entre les deux icones modifier et supprimer
 						echo '<a>&emsp;&emsp;&emsp;</a>';
 						// bouton pointant la modale de suppression
-						echo '<a data-toggle="modal" data-target="#supprimer'.$donnees_patient['pkpatient'].'"><img src="/img/trash.png"></a></td>';
+						echo '<a href="" data-toggle="modal" data-target="#supprimer'.$donnees_patient['pkpatient'].'"><img src="/img/trash.png"></a></td>';
 						// modal de Suppression
 						?>
 						<div class="modal fade" id="supprimer<?php echo $donnees_patient['pkpatient'];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
