@@ -3,9 +3,6 @@
     //echo 'test reussi valeur = '.$_POST['id_patient'];
 
     echo '<select class="custom-select mr-sm-2" name="medecin" required>';
-
-
-
     if($_POST['id_patient'] != ''){
         $req_patient_fkmedecin = $linkpdo-> prepare('SELECT fkmedecin FROM patient WHERE pkpatient = :lpkpatient');
         $req_patient_fkmedecin->execute(array('lpkpatient'=> $_POST['id_patient']));

@@ -280,8 +280,7 @@
                 </script>
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Docteur</label>
-									<div class="col-sm-8" >
-                    <div id="selection_medecin_defaut" >    
+									<div class="col-sm-8" id="selection_medecin_defaut" >
 
                       <select class="custom-select mr-sm-2" name="medecin" required>
 
@@ -295,7 +294,6 @@
                                 }
                             ?>
                       </select>
-                    </div> 
 									</div>
 								</div>
 								<br>
