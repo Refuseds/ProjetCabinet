@@ -1,10 +1,14 @@
 <?php
 session_start();
 if ( isset($_POST['deconnexion']) ) {
+	$_SESSION['login'] = 'detruite';
 	session_destroy();
 }
 ?>
 <HTML>
+	<head>
+		<meta charset="UTF-8">
+	</head>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 	<script src="/bootstrap/js/bootstrap.min.js"></script>
@@ -16,7 +20,6 @@ if ( isset($_POST['deconnexion']) ) {
 			<br>
       <input type="text" name="id" class="form-control" placeholder="identifiant" required autofocus>
       <input type="password" name="pw" class="form-control" placeholder="mot de passe" required>
-			<input type="hidden" value="true" name="tentative" />
       <button class="btn btn-lg btn-primary btn-block" name="envoyer" type="submit">Connexion</button>
     </form>
 		<div class="alerte">

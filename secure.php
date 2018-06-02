@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 // si aucune session existante, la créer
 if (!isset($_SESSION['login'])) {
 	$_SESSION['login']='vide';

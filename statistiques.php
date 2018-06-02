@@ -1,12 +1,12 @@
+<?php include 'connexionBDD.php';?>
+<?php include 'secure.php';?>
 <html>
-    <body>
+  <body>
 
  <?php
-     $linkpdo = connexionBD();
-     /****** */
      $reqHomme = $linkpdo->prepare("  SELECT  DATE_FORMAT(datenaissance, '%d/%m/%Y') AS datenaissance  FROM patient WHERE civilite = 1 ");
-     $reqHomme->execute(); 
-     $Hm25 =0; 
+     $reqHomme->execute();
+     $Hm25 =0;
      $He25e50=0;
      $Hp50 = 0;
      while($d = $reqHomme->fetch()){
@@ -18,10 +18,9 @@
             $Hp50 +=1;
         }
      }
-    /******* */
     $reqFemme = $linkpdo->prepare("  SELECT  DATE_FORMAT(datenaissance, '%d/%m/%Y') AS datenaissance  FROM patient WHERE civilite = 0 ");
-    $reqFemme->execute(); 
-    $Fm25 =0; 
+    $reqFemme->execute();
+    $Fm25 =0;
     $Fe25e50=0;
     $Fp50 = 0;
     while($d = $reqFemme->fetch()){
@@ -33,29 +32,19 @@
         $Fp50 +=1;
     }
     }
-    /********* */
      function age($date){
          return (int)((time()-strtotime($date))/3600/24/365 );
      }
 
-     function connexionBD(){
-        $server = 'localhost';
-        $login = 'root';
-        $mdp = 'root';
-        try {
-            return new PDO("mysql:host=$server;dbname=cabinet", $login, $mdp); 
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-     }
 
 
-     /* 
+
+     /*
     AVEC LES REQUETE SQL
      echo 'm2';
      $reqrdv = $linkpdo->prepare("  SELECT   DATEDIFF( CURRENT_DATE,datenaissance) AS age  FROM patient WHERE nom = 'ROMERO' ");
      //$reqrdv = $linkpdo->prepare("  SELECT   CURRENT_TIMESTAMP as age ");
-     $reqrdv->execute();  
+     $reqrdv->execute();
 
      while($d = $reqrdv->fetch()){
         echo $d['age'] .'<br>';
@@ -63,9 +52,9 @@
     }*/
 
 
-    
+
     ?>
-    
+
         <header>
             <?php include('menu.php')?>
         </header>
@@ -117,9 +106,9 @@
                         while($m = $reqMedecin->fetch()){
                             $reqHrdv = $linkpdo->prepare("  SELECT  sum(DATE_FORMAT(duree, '%H')) AS heure,
                                                                     sum(DATE_FORMAT(duree, '%i')) AS min
-                                                            FROM rdv 
+                                                            FROM rdv
                                                             WHERE fkmedecin =".$m['pkmedecin']);
-                            $reqHrdv->execute(); 
+                            $reqHrdv->execute();
                             while($d=$reqHrdv->fetch()){
                                 if($d['heure'] != ''){
 
@@ -130,7 +119,7 @@
                                             '<td>'.$heure.'h'.($tmin - $heure*60).'</td>'.
                                         '</tr>';
                                 }
-                            }   
+                            }
                         }
                     ?>
                 </tbody>
@@ -138,4 +127,3 @@
         </div>
     </body>
 </html>
-

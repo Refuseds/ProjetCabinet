@@ -1,19 +1,13 @@
-<?php include '../secure.php';?>
+
 <?php include '../connexionBDD.php';?>
 <?php
+  session_start();
   if ($_SESSION['login'] != 'ok') {
     // si un des champs d'identification est vide
     if ( (empty($_POST['id']) || empty($_POST['pw']) ) ) {
       $_SESSION["login"] = 'incomplet';
       header('Location: /index.php');
     } else {
-      // connexion à la BDD
-      try {
-        $linkpdo = new PDO("mysql:host=localhost;dbname=cabinet", 'root', 'root');
-      } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-      }
-
       // preparation de la requete
       $req = $linkpdo->prepare("SELECT password FROM login WHERE identifiant = :id");
 
@@ -33,6 +27,7 @@
       }
     }
   }
+  include '../secure.php';
 ?>
 
 
