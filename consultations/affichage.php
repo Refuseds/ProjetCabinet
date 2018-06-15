@@ -36,7 +36,7 @@
 <?php
   // ajout de données
   if( isset($_POST['valid'])){
-    $req = $linkpdo->prepare('INSERT INTO rdv (
+     $req = $linkpdo->prepare('INSERT INTO rdv (
                                     date,
                                     heure,
                                     duree,
@@ -77,6 +77,11 @@
     ));
   }
 ?>
+
+
+
+
+
 <html lang="fr">
   <head>
   	<meta charset="UTF-8" />
@@ -261,23 +266,23 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							<form action="affichage.php" method="post">
+							<form action="affichage.php" method="post" id="modalAjoutForm" >
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Date<span style="color: #fb4141">*</span></label>
 									<div class="col-sm-8">
-										<input type="date" class="form-control" name="date" min="<?php echo date("Y-m-d");?>" required>
+										<input id="date" type="date" class="form-control" name="date" min="<?php echo date("Y-m-d");?>" required>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Heure<span style="color: #fb4141">*</span></label>
 									<div class="col-sm-8">
-										<input type="time" class="form-control" name="heure" min="08:00" max="17:00" required>
+										<input id="heure" type="time" class="form-control" name="heure" min="08:00" max="17:00" required>
 									</div>
 								</div>
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Durée<span style="color: #fb4141">*</span></label>
 									<div class="col-sm-8">
-										<input type="time" value="00:30" class="form-control" name="duree">
+										<input id="duree" type="time" value="00:30" class="form-control" name="duree">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -312,12 +317,13 @@
                     });
                                   }
                 </script>
+                
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Docteur<span style="color: #fb4141">*</span></label>
-									<div class="col-sm-8" id="selection_medecin_defaut" >
+									<div class="col-sm-8"  >
 
-                      <select class="custom-select mr-sm-2" name="medecin" required>
-
+                      <select id="medecin" class="custom-select mr-sm-2" name="medecin" required>
+                     <div id="selection_medecin_defaut">               
                           <option value="" > Veuillez choisir un médecin </option>
                             <!-- injection de la liste de medecin -->
                             <?php
@@ -327,12 +333,17 @@
                                   echo '<option value="'.$m['pkmedecin'].'"> '.$m['nom'].' '.$m['prenom'].'</option>';
                                 }
                             ?>
+                      </div>
                       </select>
 									</div>
 								</div>
 								<br>
                 <label class="col-sm-4 col-form-label"><span style="color: #fb4141">*<font size="-2"> Champs obligatoires</font></span></label>
-								<input class="btn btn-success float-right" type="submit" value="Valider" name="valid">
+                <div id="a">
+                    <input class="btn btn-success float-right"  type="submit" value="test" onClick="ctrl_Chevauchement();">                
+                </div>
+              <!--  <input class="btn btn-success float-right" type="submit" value="Valider" name="valid">  -->              
+
               </form>
 						</div>
 					</div>
@@ -340,3 +351,42 @@
 			</div>
 	</body>
 </html>
+
+  
+<script  >
+
+function ctrl_Chevauchement()
+{
+
+  var date = document.getElementById("date").value;
+  var heure = document.getElementById("heure").value;
+  var duree = document.getElementById("duree").value;
+  alert(document.getElementById("medecin").value);
+
+var medecin = document.getElementById("medecin").value;
+/*
+  $.post('ctrlChevauchement.php',               // AJAX : On appelle un script php
+    {medecin: medecin,date : date, heure:heure,duree:duree},         // Passage de la variable en paramètre
+    
+    );
+*/
+
+    $.ajax({
+                type: "POST",
+                url: "ctrlChevauchement.php",
+                data: {medecin: medecin,date : date, heure:heure,duree:duree},
+                success: function(response){
+                  alert(response);
+                }
+            });
+  
+
+
+document.getElementById('modalAjoutForm').addEventListener('submit', function(event){
+        event.preventDefault();
+        //alert("By signing up, you must accept our terms and conditions!");
+     
+});
+}
+</script>
+

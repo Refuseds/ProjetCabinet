@@ -182,13 +182,13 @@ if( isset($_POST['modification'])){
   						<div class="form-group row">
   							<label class="col-sm-4 col-form-label">Nom<span style="color: #fb4141">*</span></label>
   							<div class="col-sm-8">
-  								<input type="text" class="form-control" name="nom" required>
+  								<input type="text" class="form-control" name="nom" pattern ="[a-zA-Z]{1,50}" title="15 chiffres" required>
   							</div>
   						</div>
   						<div class="form-group row">
   							<label class="col-sm-4 col-form-label">Prénom<span style="color: #fb4141">*</span></label>
   							<div class="col-sm-8">
-  								<input type="text" class="form-control" name="prenom" required>
+  								<input type="text" class="form-control" name="prenom" pattern ="[a-zA-Z]{1,50}" required>
   							</div>
   						</div>
   						<br>
