@@ -337,10 +337,9 @@
 								<br>
                 <label class="col-sm-4 col-form-label"><span style="color: #fb4141">*<font size="-2"> Champs obligatoires</font></span></label>
                 <div id="a">
-                    <input class="btn btn-success float-right btn-test"  type="submit" value="test" >                
+                    <!--<input class="btn btn-success float-right btn-test"  type="submit" value="test" >   -->             
                 </div>
-              <!--  <input class="btn btn-success float-right" type="submit" value="Valider" name="valid">  -->              
-
+                    <input class="btn btn-success float-right" type="submit" value="Valider" name="valid">              
               </form>
 						</div>
 					</div>
@@ -351,7 +350,7 @@
 
   
 <script  >
-
+/*
 //onClick="ctrl_Chevauchement();"
 $('.btn-test').on('click', function() {
   var $medecin = $('#medecin').val();
@@ -363,7 +362,7 @@ var lala = $('#medecin').val($('#medecin option:eq(1)').val());
  console.log(lala);
 
 })
-
+*/
 function ctrl_Chevauchement()
 {
 

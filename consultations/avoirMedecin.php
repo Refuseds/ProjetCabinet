@@ -3,10 +3,12 @@
     //echo 'test reussi valeur = '.$_POST['id_patient'];
 
     echo '<select class="custom-select mr-sm-2" name="medecin" required>';
+    //si medecin pas vide
     if($_POST['id_patient'] != ''){
         $req_patient_fkmedecin = $linkpdo-> prepare('SELECT fkmedecin FROM patient WHERE pkpatient = :lpkpatient');
         $req_patient_fkmedecin->execute(array('lpkpatient'=> $_POST['id_patient']));
         $res_patient_fkmedecin = $req_patient_fkmedecin->fetch();
+        // si id medecin pas = 0
         if($res_patient_fkmedecin['fkmedecin']!= '0'){
             $req_medecin = $linkpdo->prepare('SELECT * FROM medecin WHERE pkmedecin = :lpkmedecin');
             $req_medecin -> execute(array('lpkmedecin'=> $res_patient_fkmedecin['fkmedecin']));
