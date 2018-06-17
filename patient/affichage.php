@@ -146,13 +146,13 @@ if( isset($_POST['modification'])){
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Nom<span style="color: #fb4141">*</span></label>
 												<div class="col-sm-8">
-													<input type="text" value="<?php echo $donnees_patient['nom'];?>" class="form-control" name="nom" required>
+													<input type="text" value="<?php echo $donnees_patient['nom'];?>" class="form-control" name="nom" pattern ="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ\s-]+" required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Prénom<span style="color: #fb4141">*</span></label>
 												<div class="col-sm-8">
-													<input type="text" value="<?php echo $donnees_patient['prenom'];?>" class="form-control" name="prenom" required>
+													<input type="text" value="<?php echo $donnees_patient['prenom'];?>" class="form-control" name="prenom" pattern ="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ\s-]+" required>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -170,7 +170,7 @@ if( isset($_POST['modification'])){
 											<div class="form-group row">
 												<label class="col-sm-4 col-form-label">Lieu de naissance</label>
 												<div class="col-sm-8">
-													<input type="text" value="<?php echo $donnees_patient['lieunaissance'];?>" class="form-control" name="lieunaissance" >
+													<input type="text" value="<?php echo $donnees_patient['lieunaissance'];?>" class="form-control" name="lieunaissance" pattern ="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ\s-]+" >
 												</div>
 											</div>
 											<div class="form-group row">
@@ -270,13 +270,13 @@ if( isset($_POST['modification'])){
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Nom<span style="color: #fb4141">*</span></label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" name="nom" required>
+									<input type="text" class="form-control" name="nom" pattern ="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ\s-]+" required>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Prénom<span style="color: #fb4141">*</span></label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" name="prenom" required>
+									<input type="text" class="form-control" name="prenom" pattern ="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ\s-]+" required>
 								</div>
 							</div>
 							<div class="form-group row">
@@ -294,7 +294,7 @@ if( isset($_POST['modification'])){
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label">Lieu de naissance</label>
 								<div class="col-sm-8">
-									<input type="text" class="form-control" name="lieunaissance">
+									<input type="text" class="form-control" name="lieunaissance" pattern ="[a-zA-ZàâæçéèêëîïôœùûüÿÀÂÆÇnÉÈÊËÎÏÔŒÙÛÜŸ\s-]+">
 								</div>
 							</div>
 							<div class="form-group row">
