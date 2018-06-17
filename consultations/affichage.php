@@ -302,7 +302,6 @@
 									</div>
 								</div>
                 <script language="Javascript" >
-
                   function maFonction()
                   {
                       //var marque = $(":select[name=patient]").value();    // On récupère la valeur du sélect ayant pour id "patient"
@@ -314,16 +313,15 @@
                       {id_patient: patient},          // Passage de la variable en paramètre
                           function(data){
                         $('#selection_medecin_defaut').html(data);             // On ajoute le résultat de se script dans la balise qui a pour id "conteneur". (un div ou un span comme tu le souhaites)
+                            
                     });
                                   }
                 </script>
                 
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label">Docteur<span style="color: #fb4141">*</span></label>
-									<div class="col-sm-8"  >
-
+									<div class="col-sm-8"  id="selection_medecin_defaut">
                       <select id="medecin" class="custom-select mr-sm-2" name="medecin" required>
-                     <div id="selection_medecin_defaut">               
                           <option value="" > Veuillez choisir un médecin </option>
                             <!-- injection de la liste de medecin -->
                             <?php
@@ -333,14 +331,13 @@
                                   echo '<option value="'.$m['pkmedecin'].'"> '.$m['nom'].' '.$m['prenom'].'</option>';
                                 }
                             ?>
-                      </div>
                       </select>
-									</div>
+                    </div>
 								</div>
 								<br>
                 <label class="col-sm-4 col-form-label"><span style="color: #fb4141">*<font size="-2"> Champs obligatoires</font></span></label>
                 <div id="a">
-                    <input class="btn btn-success float-right"  type="submit" value="test" onClick="ctrl_Chevauchement();">                
+                    <input class="btn btn-success float-right btn-test"  type="submit" value="test" >                
                 </div>
               <!--  <input class="btn btn-success float-right" type="submit" value="Valider" name="valid">  -->              
 
@@ -355,6 +352,18 @@
   
 <script  >
 
+//onClick="ctrl_Chevauchement();"
+$('.btn-test').on('click', function() {
+  var $medecin = $('#medecin').val();
+  var $date = $('#date').val();
+  var $heure = $('#heure').val();
+  var $duree = $('#duree').val();
+
+var lala = $('#medecin').val($('#medecin option:eq(1)').val());
+ console.log(lala);
+
+})
+
 function ctrl_Chevauchement()
 {
 
@@ -363,7 +372,7 @@ function ctrl_Chevauchement()
   var duree = document.getElementById("duree").value;
   alert(document.getElementById("medecin").value);
 
-var medecin = document.getElementById("medecin").value;
+  var medecin = document.getElementById("medecin").value;
 /*
   $.post('ctrlChevauchement.php',               // AJAX : On appelle un script php
     {medecin: medecin,date : date, heure:heure,duree:duree},         // Passage de la variable en paramètre

@@ -22,7 +22,7 @@ while($res = $req-> fetch()){
 if($verification == 0  ){
     echo 'ok';
 }else{
-    echo ' non';
+    echo 'non';
 }
 
 
